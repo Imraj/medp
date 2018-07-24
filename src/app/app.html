@@ -1,6 +1,7 @@
-<ion-menu [content]="content">
+<ion-menu overlay [content]="content">
   <ion-content>
-    <ion-list no-lines>
+    <div style="background-color: black">
+      <ion-list no-lines>
       <button menuClose ion-item>
           Settings
       </button>
@@ -34,7 +35,8 @@
       <button menuClose ion-item (click)="logout()">
          Logout
       </button>
-    </ion-list>
+      </ion-list>
+    </div>
   </ion-content>
 </ion-menu>
 
