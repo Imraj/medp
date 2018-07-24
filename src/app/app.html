@@ -1,18 +1,41 @@
 <ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+    <ion-list no-lines>
+      <button menuClose ion-item>
+          Settings
+      </button>
+      <button menuClose ion-item (click)="navToHome()">
+          App Home
+      </button>
+      <button menuClose ion-item (click)="navToProfile()">
+          Profile
+      </button>
+      <button menuClose ion-item (click)="navToAbout()">
+          About
+      </button>
+      <button menuClose ion-item (click)="navToShare()">
+        Share
+      </button>
+      <button menuClose ion-item (click)="navToFaqs()">
+        FAQs
+      </button>
+      <button menuClose ion-item (click)="navToSub()">
+        Subscription
+      </button>
+      <button menuClose ion-item (click)="navToContact()">
+        Contact / Provide Feedback
+      </button>
+      <button menuClose ion-item (click)="navToPrivacy()">
+        Privacy Policy
+      </button>
+      <button menuClose ion-item (click)="navToTOS()">
+        Terms of Service
+      </button>
+      <button menuClose ion-item (click)="logout()">
+         Logout
       </button>
     </ion-list>
   </ion-content>
-
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->

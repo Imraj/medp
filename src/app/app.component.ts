@@ -4,7 +4,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { AboutPage } from "../pages/about/about";
+import { ContactPage } from "../pages/contact/contact";
+import { FaqsPage } from "../pages/faqs/faqs";
+import { PrivacypolicyPage } from "../pages/privacypolicy/privacypolicy";
+import { ProfilePage } from "../pages/profile/profile";
+import { SharePage } from "../pages/share/share";
+import { SubscriptionPage } from "../pages/subscription/subscription";
+import { TermsofservicePage } from "../pages/termsofservice/termsofservice";
 
 @Component({
   templateUrl: 'app.html'
@@ -21,8 +28,17 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'App Home', component: HomePage },
+      { title: 'Profile', component: ProfilePage  },
+      { title: 'About', component: AboutPage  },
+      { title: 'Share', component: SharePage  },
+      { title: 'FAQs', component: FaqsPage  },
+      
+      { title: 'Subscription', component: SubscriptionPage  },
+      { title: 'Contact / Provide Feedback', component: ContactPage  },
+      { title: 'Privacy Policy', component: PrivacypolicyPage  },
+      
+      { title: 'Terms of Service', component: TermsofservicePage  },
     ];
 
   }
@@ -41,4 +57,36 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  navToHome(){
+    this.nav.push(HomePage)
+  }
+  navToProfile(){
+    this.nav.push(ProfilePage)
+  }
+  navToAbout(){
+    this.nav.push(AboutPage)
+  }
+  navToShare(){
+    this.nav.push(SharePage)
+  }
+  navToFaqs(){
+    this.nav.push(FaqsPage)
+  }
+  navToSub(){
+    this.nav.push(SubscriptionPage)
+  }
+  navToContact(){
+    this.nav.push(ContactPage)
+  }
+  navToPrivacy(){
+    this.nav.push(PrivacypolicyPage)
+  }
+  navToTOS(){
+    this.nav.push(TermsofservicePage)
+  }
+  logout(){
+    
+  }
+
 }
