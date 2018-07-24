@@ -15,6 +15,9 @@ import { TermsofservicePage } from "../pages/termsofservice/termsofservice";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ExpirationdatePage } from '../pages/expirationdate/expirationdate';
+import { RecallPage } from '../pages/recall/recall';
+import { InsulinguidePage } from '../pages/insulinguide/insulinguide';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ProfilePage,
     SharePage,
     SubscriptionPage,
-    TermsofservicePage
+    TermsofservicePage,
+    ExpirationdatePage,
+    RecallPage,
+    InsulinguidePage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ProfilePage,
     SharePage,
     SubscriptionPage,
-    TermsofservicePage
+    TermsofservicePage,
+    
+    ExpirationdatePage,
+    RecallPage,
+    InsulinguidePage
   ],
   providers: [
     StatusBar,
