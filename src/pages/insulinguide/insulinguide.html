@@ -18,7 +18,53 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding id="insulin-page">
+
+    <div text-center id="title">
+        <span id="size-3">USE THE OPTIONS TO SELECT INSULIN OF INTEREST</span>
+    </div>
+
+    <ion-list no-lines id="insulin-page-list">
+        <ion-item id="insulin-page-list">
+            <ion-label>Select Insulin Name</ion-label>
+            <ion-select>
+                <ion-option></ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item id="insulin-page-list">
+            <ion-label>Select Brand</ion-label>
+            <ion-select>
+                <ion-option></ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item id="insulin-page-list">
+            <ion-label>Select Type</ion-label>
+            <ion-select>
+                <ion-option></ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item id="insulin-page-list">
+            <ion-label>Select ML</ion-label>
+            <ion-select>
+                <ion-option></ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item id="insulin-page-list">
+            <ion-label><span>Refrigerated?</span></ion-label>
+            <ion-toggle checked="false"></ion-toggle>
+        </ion-item>
+        <ion-item id="insulin-page-list">
+            <ion-label><span>Opened?</span></ion-label>
+            <ion-toggle checked="false"></ion-toggle>
+        </ion-item>
+        <ion-item id="insulin-page-list">
+            <ion-label>Date Opened</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+        </ion-item>
+        <ion-item id="insulin-page-list">
+            <button id="submit" ion-button primary>Submit</button>
+        </ion-item>
+    </ion-list>
 
 </ion-content>
 

@@ -1,39 +1,49 @@
-<ion-menu overlay [content]="content">
-  <ion-content>
-    <div style="background-color: black">
+<ion-menu [content]="content">
+  <ion-content id="menu">
+    <div>
       <ion-list no-lines>
-      <button menuClose ion-item>
+      <button id="menuBtn" menuClose ion-item>
           Settings
       </button>
-      <button menuClose ion-item (click)="navToHome()">
-          App Home
+      <button id="menuBtn" menuClose ion-item (click)="navToHome()">
+          <img src="assets/icons/home.png" width="20" height="20" />
+          <span id="menuTxt">App Home</span>
       </button>
-      <button menuClose ion-item (click)="navToProfile()">
-          Profile
+      <button id="menuBtn" menuClose ion-item (click)="navToProfile()">
+          <img src="assets/icons/settings.png" width="20" height="20" />
+          <span id="menuTxt">Profile</span>
       </button>
-      <button menuClose ion-item (click)="navToAbout()">
-          About
+      <button id="menuBtn" menuClose ion-item (click)="navToAbout()">
+          <img src="assets/icons/about.png" width="20" height="20" />
+          <span id="menuTxt">About</span>
       </button>
-      <button menuClose ion-item (click)="navToShare()">
-        Share
+      <button id="menuBtn" menuClose ion-item (click)="navToShare()">
+        <img src="assets/icons/share.png" width="20" height="20" />
+        <span id="menuTxt">Share</span>
       </button>
-      <button menuClose ion-item (click)="navToFaqs()">
-        FAQs
+      <button id="menuBtn" menuClose ion-item (click)="navToFaqs()">
+        <img src="assets/icons/question.png" width="20" height="20" />
+        <span id="menuTxt">FAQs</span>
       </button>
-      <button menuClose ion-item (click)="navToSub()">
-        Subscription
+      <button id="menuBtn" menuClose ion-item (click)="navToSub()">
+        <img src="assets/icons/credit-card.png" width="20" height="20" />
+        <span id="menuTxt">Subscription</span>
       </button>
-      <button menuClose ion-item (click)="navToContact()">
-        Contact / Provide Feedback
+      <button id="menuBtn" menuClose ion-item (click)="navToContact()">
+        <img src="assets/icons/support.png" width="20" height="20" />
+        <span id="menuTxt">Contact / Provide Feedback</span>
       </button>
-      <button menuClose ion-item (click)="navToPrivacy()">
-        Privacy Policy
+      <button id="menuBtn" menuClose ion-item (click)="navToPrivacy()">
+        <img src="assets/icons/decision.png" width="20" height="20" />
+        <span id="menuTxt">Privacy Policy</span>
       </button>
-      <button menuClose ion-item (click)="navToTOS()">
-        Terms of Service
+      <button id="menuBtn" menuClose ion-item (click)="navToTOS()">
+        <img src="assets/icons/book.png" width="20" height="20" />
+        <span id="menuTxt">Terms of Service</span>
       </button>
-      <button menuClose ion-item (click)="logout()">
-         Logout
+      <button id="menuBtn" menuClose ion-item (click)="logout()">
+         <img src="assets/icons/logout.png" width="20" height="20" />
+         <span id="menuTxt">Logout</span>
       </button>
       </ion-list>
     </div>

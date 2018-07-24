@@ -8,6 +8,7 @@ import { InsulinguidePage } from '../insulinguide/insulinguide';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
 
   constructor(public navCtrl: NavController) {

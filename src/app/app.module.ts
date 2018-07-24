@@ -18,6 +18,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ExpirationdatePage } from '../pages/expirationdate/expirationdate';
 import { RecallPage } from '../pages/recall/recall';
 import { InsulinguidePage } from '../pages/insulinguide/insulinguide';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
+import { ForgotpwdPage } from '../pages/forgotpwd/forgotpwd';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { InsulinguidePage } from '../pages/insulinguide/insulinguide';
     TermsofservicePage,
     ExpirationdatePage,
     RecallPage,
-    InsulinguidePage
+    InsulinguidePage,
+    LoginPage,
+    RegisterPage,
+    ForgotpwdPage
   ],
   imports: [
     BrowserModule,
@@ -54,7 +60,10 @@ import { InsulinguidePage } from '../pages/insulinguide/insulinguide';
     
     ExpirationdatePage,
     RecallPage,
-    InsulinguidePage
+    InsulinguidePage,
+    LoginPage,
+    RegisterPage,
+    ForgotpwdPage
   ],
   providers: [
     StatusBar,

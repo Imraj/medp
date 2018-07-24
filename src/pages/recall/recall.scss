@@ -5,6 +5,9 @@ page-recall {
     #size-2{
         font-size:18px;
     }
+    #size-3{
+        font-size:12px;
+    }
     #title{
         margin-top:1em;
         margin-bottom:2em;
@@ -12,5 +15,11 @@ page-recall {
     }
     #home-menu{
         margin-top:1em;
+    }
+    #titleText{
+        color: #938f71;
+    }
+    #recall-page,ion-content{
+        background-color: #8ebac6;
     }
 }

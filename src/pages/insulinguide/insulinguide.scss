@@ -5,6 +5,9 @@ page-insulinguide {
     #size-2{
         font-size:18px;
     }
+    #size-3{
+        font-size:12px;
+    }
     #title{
         margin-top:1em;
         margin-bottom:2em;
@@ -13,4 +16,15 @@ page-insulinguide {
     #home-menu{
         margin-top:1em;
     }
+    #submit{
+        height:3em;
+        width: 12em;
+    }
+    #titleText{
+       color: #938f71;
+    }
+    #insulin-page,#insulin-page-list,ion-content{
+        background-color: #8ebac6;
+    }
+
 }

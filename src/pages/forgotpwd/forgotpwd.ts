@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { LoginPage } from '../login/login';
 
 /**
- * Generated class for the RegisterPage page.
+ * Generated class for the ForgotpwdPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,24 +10,16 @@ import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
-  selector: 'page-register',
-  templateUrl: 'register.html',
+  selector: 'page-forgotpwd',
+  templateUrl: 'forgotpwd.html',
 })
-export class RegisterPage {
+export class ForgotpwdPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
-  }
-
-  createAccount(){
-
-  }
-
-  navToLogin(){
-    this.navCtrl.push(LoginPage)
+    console.log('ionViewDidLoad ForgotpwdPage');
   }
 
 }

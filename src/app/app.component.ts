@@ -12,6 +12,7 @@ import { ProfilePage } from "../pages/profile/profile";
 import { SharePage } from "../pages/share/share";
 import { SubscriptionPage } from "../pages/subscription/subscription";
 import { TermsofservicePage } from "../pages/termsofservice/termsofservice";
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
@@ -19,7 +20,7 @@ import { TermsofservicePage } from "../pages/termsofservice/termsofservice";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 

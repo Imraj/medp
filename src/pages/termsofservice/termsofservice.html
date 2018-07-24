@@ -6,8 +6,13 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Terms of Service</ion-title>
+  <ion-navbar color="primary">
+    <div>
+        <img src="assets/imgs/mlogo.png" width="50" height="50"/>
+    </div>
+    <ion-title>
+        <span id="titleText">Terms of Service</span>
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,3 +21,23 @@
 <ion-content padding>
 
 </ion-content>
+
+<ion-footer>
+    <ion-row>
+        <ion-col no-padding>
+            <button no-margin ion-button full large color="primary" (click)="navToExpirationdate()">
+              <img src="assets/imgs/calendar.png" width="35" height="35"/>
+            </button>
+        </ion-col>
+        <ion-col no-padding>
+            <button no-margin ion-button full large color="primary" (click)="navToInsulin()">
+                <img src="assets/imgs/tan.png" width="25" height="35"/>
+            </button>
+        </ion-col>
+        <ion-col no-padding>
+            <button no-margin ion-button full large color="primary" (click)="navToRecall()">
+                <img src="assets/imgs/warning.png" width="35" height="35"/>
+            </button>
+        </ion-col>
+    </ion-row>
+</ion-footer>

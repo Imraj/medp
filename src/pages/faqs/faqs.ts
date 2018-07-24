@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { ExpirationdatePage } from '../expirationdate/expirationdate';
+import { RecallPage } from '../recall/recall';
+import { InsulinguidePage } from '../insulinguide/insulinguide';
 /**
  * Generated class for the FaqsPage page.
  *
@@ -20,6 +22,18 @@ export class FaqsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FaqsPage');
+  }
+
+  navToExpirationdate(){
+    this.navCtrl.push(ExpirationdatePage)
+  }
+
+  navToRecall(){
+    this.navCtrl.push(RecallPage)
+  }
+
+  navToInsulin(){
+    this.navCtrl.push(InsulinguidePage)
   }
 
 }
