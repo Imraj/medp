@@ -26,7 +26,7 @@ export class LoginPage {
   }
 
   login(){
-    this.navCtrl.push(HomePage)
+    this.navCtrl.setRoot(HomePage)
   }
 
   navToRegister(){

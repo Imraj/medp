@@ -20,6 +20,35 @@
 
 <ion-content padding>
 
+        <ion-list no-lines>
+            <ion-item>
+                <ion-input placeholder="Email Address"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input placeholder="Full name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Select Gender</ion-label>
+                <ion-select>
+                    <ion-option value="Male">Male</ion-option>
+                    <ion-option value="Female">Female</ion-option>
+                    <ion-option value="noanswer">Prefer not to answer</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label>Select Country</ion-label>
+                <ion-select>
+                    <ion-option></ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-input placeholder="Enter State"></ion-input>
+            </ion-item>
+            <ion-item text-center>
+                <button id="btn" ion-button block>Update Profile</button>
+            </ion-item>
+        </ion-list>
+
 </ion-content>
 
 <ion-footer>
