@@ -22,6 +22,19 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { ForgotpwdPage } from '../pages/forgotpwd/forgotpwd';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyDtdcpysDPMgbkl3nVB5wbDbTk_jZkMhKY",
+    authDomain: "medexp-d7f3f.firebaseapp.com",
+    databaseURL: "https://medexp-d7f3f.firebaseio.com",
+    projectId: "medexp-d7f3f",
+    storageBucket: "medexp-d7f3f.appspot.com",
+    messagingSenderId: "1001953293876"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -44,6 +57,9 @@ import { ForgotpwdPage } from '../pages/forgotpwd/forgotpwd';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -68,6 +84,7 @@ import { ForgotpwdPage } from '../pages/forgotpwd/forgotpwd';
   providers: [
     StatusBar,
     SplashScreen,
+    AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

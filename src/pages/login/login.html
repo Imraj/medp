@@ -22,11 +22,11 @@
 
   <ion-list no-lines>
      <ion-item>
-       <ion-input placeholder="Email Address"></ion-input>
+       <ion-input [(ngModel)]="loginData.email" placeholder="Email Address"></ion-input>
      </ion-item>
 
      <ion-item>
-        <ion-input placeholder="Password"></ion-input>
+        <ion-input type="password" [(ngModel)]="loginData.password" placeholder="Password"></ion-input>
      </ion-item>
 
      <ion-item>

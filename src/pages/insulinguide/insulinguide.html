@@ -62,9 +62,13 @@
             <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
         </ion-item>
         <ion-item id="insulin-page-list" text-center>
-            <button id="submit" ion-button primary>Submit</button>
+            <button id="submit" ion-button primary (click)="calInsulin()">Submit</button>
         </ion-item>
     </ion-list>
+
+    <div *ngIf="showRes">
+
+    </div>
 
 </ion-content>
 

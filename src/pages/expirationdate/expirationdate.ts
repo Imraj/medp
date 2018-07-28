@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
 /**
@@ -16,7 +16,11 @@ import { InsulinguidePage } from '../insulinguide/insulinguide';
 })
 export class ExpirationdatePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  showRes = false
+  resExpdate : string = "";
+  resNote: string = "";
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -33,6 +37,17 @@ export class ExpirationdatePage {
 
   navToInsulin(){
     this.navCtrl.push(InsulinguidePage)
+  }
+
+  calExpirationDate(){
+    let loader = this.loadingCtrl.create({
+      content:"Processing..."
+    });
+    loader.present();
+
+    this.showRes = true;
+    this.resExpdate = "July 1, 2018";
+    this.resNote = "Notes about medication appears here via ion-card";
   }
 
 }

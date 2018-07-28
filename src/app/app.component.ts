@@ -34,11 +34,9 @@ export class MyApp {
       { title: 'About', component: AboutPage  },
       { title: 'Share', component: SharePage  },
       { title: 'FAQs', component: FaqsPage  },
-      
       { title: 'Subscription', component: SubscriptionPage  },
       { title: 'Contact / Provide Feedback', component: ContactPage  },
       { title: 'Privacy Policy', component: PrivacypolicyPage  },
-      
       { title: 'Terms of Service', component: TermsofservicePage  },
     ];
 
@@ -87,7 +85,7 @@ export class MyApp {
     this.nav.push(TermsofservicePage)
   }
   logout(){
-    
+    this.nav.setRoot(LoginPage)
   }
 
 }

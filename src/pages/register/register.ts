@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+import { AngularFireDatabase } from 'angularfire2/database';
 /**
  * Generated class for the RegisterPage page.
  *
@@ -16,7 +19,15 @@ import { LoginPage } from '../login/login';
 })
 export class RegisterPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  regData = {
+    email:"",
+    fullname:"",
+    password: "",
+    password2: ""
+  }
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
+              public afAuth: AngularFireAuth,public db: AngularFireDatabase) {
   }
 
   ionViewDidLoad() {
@@ -24,6 +35,38 @@ export class RegisterPage {
   }
 
   createAccount(){
+
+    let loader = this.loadingCtrl.create({
+      content:"Please wait..."    
+    });
+    loader.present();
+
+    let email = this.regData.email;
+    let fullname = this.regData.fullname;
+    let pwd = this.regData.password;
+
+    return this.afAuth.auth.createUserWithEmailAndPassword(email,pwd)
+        .then(function(err){
+          if(err){
+            loader.dismiss();
+            let alert = this.alertCtrl.create({
+             title: "Error",
+             subTitle: err,
+             buttons: ['Ok']
+            });
+            alert.present();
+
+          }
+          else{
+            loader.dismiss();
+            let alert = this.alertCtrl.create({
+              title: "Success",
+              subTitle: "Account created successfully. Login to continue",
+              buttons: ['Ok']
+             });
+             alert.present();
+          }
+        })
 
   }
 

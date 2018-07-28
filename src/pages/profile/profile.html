@@ -22,14 +22,14 @@
 
         <ion-list no-lines>
             <ion-item>
-                <ion-input placeholder="Email Address"></ion-input>
+                <ion-input [(ngModel)]="profile.email" placeholder="Email Address"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input placeholder="Full name"></ion-input>
+                <ion-input [(ngModel)]="profile.fullname" placeholder="Full name"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Select Gender</ion-label>
-                <ion-select>
+                <ion-select [(ngModel)]="profile.gender">
                     <ion-option value="Male">Male</ion-option>
                     <ion-option value="Female">Female</ion-option>
                     <ion-option value="noanswer">Prefer not to answer</ion-option>
@@ -37,11 +37,11 @@
             </ion-item>
             <ion-item>
                 <ion-label>Select Country</ion-label>
-                <ion-select>
+                <ion-select [(ngModel)]="profile.country">
                     <ion-option></ion-option>
                 </ion-select>
             </ion-item>
-            <ion-item>
+            <ion-item [(ngModel)]="profile.state">
                 <ion-input placeholder="Enter State"></ion-input>
             </ion-item>
             <ion-item text-center>
