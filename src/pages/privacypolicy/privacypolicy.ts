@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 /**
  * Generated class for the PrivacypolicyPage page.
  *
@@ -17,7 +18,8 @@ import { InsulinguidePage } from '../insulinguide/insulinguide';
 })
 export class PrivacypolicyPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private iab:InAppBrowser) {
+    const browser = this.iab.create('https://ionicframework.com/')
   }
 
   ionViewDidLoad() {

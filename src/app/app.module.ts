@@ -34,6 +34,7 @@ import { HttpModule } from '@angular/http';
 
 import { Stripe } from "@ionic-native/stripe"
 import { EmailComposer } from '@ionic-native/email-composer';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { EmailComposer } from '@ionic-native/email-composer';
     SplashScreen,
     Stripe,
     EmailComposer,
+    InAppBrowser,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
