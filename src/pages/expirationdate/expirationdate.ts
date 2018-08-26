@@ -2,6 +2,17 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
+
+import * as firebase from 'firebase/app';
+import { AngularFireDatabase } from 'angularfire2/database';
+
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map'
+import { Storage } from "@ionic/storage"
+
+import { Observable } from 'rxjs';
+
+import { SubscriptionPage } from '../subscription/subscription';
 /**
  * Generated class for the ExpirationdatePage page.
  *
@@ -20,8 +31,15 @@ export class ExpirationdatePage {
   resExpdate : string = "";
   resNote: string = "";
 
+  medTypes: Observable<any[]>
+  medications: Observable<any[]>
+
+  currentEmail : string
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,private db: AngularFireDatabase,public storage: Storage) 
+  {
+      this.medTypes = db.list("medications").valueChanges()
+      this.medications = db.list("medications").valueChanges()
   }
 
   ionViewDidLoad() {
@@ -41,15 +59,19 @@ export class ExpirationdatePage {
   }
 
   calcExpirationDate(){
+    var app = this
     let loader = this.loadingCtrl.create({
-      content:"Processing...",
-      duration: 5000
+        content:"Processing...",
+        duration: 5000
     });
     loader.present();
-
-    this.showRes = true;
-    this.resExpdate = "July 1, 2018";
-    this.resNote = "Notes about medication appears here via ion-card";
+    setTimeout(function(){
+      app.showRes = true;
+      app.resExpdate = "July 1, 2018";
+      app.resNote = "Notes about medication appears here via ion-card";
+    },5000)
   }
+    
+  
 
 }

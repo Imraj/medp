@@ -28,25 +28,33 @@
         <ion-item id="insulin-page-list">
             <ion-label>Select Insulin Name</ion-label>
             <ion-select>
-                <ion-option></ion-option>
+                <ion-option *ngFor="let insulin of insulinGuide | async">
+                    {{ insulin.name }}
+                </ion-option>
             </ion-select>
         </ion-item>
         <ion-item id="insulin-page-list">
             <ion-label>Select Brand</ion-label>
             <ion-select>
-                <ion-option></ion-option>
+                <ion-option *ngFor="let insulin of insulinGuide | async">
+                    {{ insulin.brand }}
+                </ion-option>
             </ion-select>
         </ion-item>
         <ion-item id="insulin-page-list">
             <ion-label>Select Type</ion-label>
             <ion-select>
-                <ion-option></ion-option>
+                <ion-option *ngFor="let insulin of insulinGuide | async">
+                        {{ insulin.type }}
+                </ion-option>
             </ion-select>
         </ion-item>
         <ion-item id="insulin-page-list">
             <ion-label>Select ML</ion-label>
             <ion-select>
-                <ion-option></ion-option>
+                    <ion-option *ngFor="let insulin of insulinGuide | async">
+                            {{ insulin.ml }}
+                    </ion-option>
             </ion-select>
         </ion-item>
         <ion-item id="insulin-page-list">
@@ -62,7 +70,7 @@
             <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
         </ion-item>
         <ion-item id="insulin-page-list" text-center>
-            <button id="submit" ion-button primary (click)="calInsulin()">Submit</button>
+            <button id="submitBtn" ion-button primary (click)="calcInsulin()">Submit</button>
         </ion-item>
     </ion-list>
 
