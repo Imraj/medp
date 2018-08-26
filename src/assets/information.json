@@ -6,17 +6,27 @@
                 {
                     "name": "Special Academy Pizza",
                     "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                    
+                    "date": "$25"
+                },
+                {
+                    "name": "Pizza Ionic",
+                    "information": "Pork chop meatloaf rump, meatball shoulder turducken alcatra doner sausage capicola pork strip steak turkey cupim leberkas.",
+                    "price": "$19.99"
                 }
             ]
         },
         {
-            "name": "Action 2",
+            "name": "Drinks",
             "children": [
                 {
                     "name": "Special Academy Pizza",
-                    "information": "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-                    
+                    "information": " Landjaeger fatback shank frankfurter, tongue shoulder ham strip steak pancetta pork short loin corned beef short ribs biltong cow",
+                    "price": "$25"
+                },
+                {
+                    "name": "Pizza Ionic",
+                    "information": "Pork chop pastrami landjaeger chuck brisket",
+                    "price": "$19.99"
                 }
             ]
         }

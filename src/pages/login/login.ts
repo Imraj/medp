@@ -68,12 +68,34 @@ export class LoginPage {
       return this.afAuth.auth.signInWithEmailAndPassword(email,pwd)
          .then(function(res){
 
-             loader.dismiss()
-             app.currentEmail = firebase.auth().currentUser.email
-             app.storage.set("currentEmail",app.currentEmail)
-             app.navCtrl.setRoot(HomePage)  
+            loader.dismiss()
+            app.currentEmail = firebase.auth().currentUser.email
+            app.storage.set("currentEmail",app.currentEmail)
+            app.navCtrl.setRoot(HomePage)  
 
-             console.log("app.currentEmail",app.currentEmail)
+            console.log("app.currentEmail",app.currentEmail)
+
+            const profile = app.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(app.currentEmail)).valueChanges()
+            profile.subscribe(data => {
+              console.log("Data")
+              console.log(data)
+              console.log( data[0] )
+            
+              app.storage.set( "age", data[0]["age"] )
+              app.storage.set( "email",data[0]["email"] )
+              app.storage.set( "ethnicity",data[0]["ethnicity"])
+              app.storage.set( "fullname",data[0]["fullname"] )
+              app.storage.set( "gender", data[0]["gender"] )
+              app.storage.set( "occupation",data[0]["occupation"])
+              app.storage.set( "state",data[0]["state"])
+              app.storage.set( "country",data[0]["country"])
+              app.storage.set( "subscribed",data[0]["subscribed"] )
+              app.storage.set( "subscribed_date", data[0]["subscribed_date"] )
+      
+            },err=>{
+              console.log("Err")
+              console.log(err)
+            });
 
          },
          function(err){

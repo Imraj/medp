@@ -25,10 +25,9 @@ import { SubscriptionPage } from '../subscription/subscription';
   templateUrl: 'recall.html',
 })
 export class RecallPage {
-  information : any;
+  information : any[];
   currentEmail : string
   
-  //arr : any[]
   constructor(public navCtrl: NavController, private http: Http,public navParams: NavParams,
               public db: AngularFireDatabase,public storage: Storage) 
   {
@@ -36,15 +35,12 @@ export class RecallPage {
     var app = this
     this.storage.get("currentEmail").then((val)=>{
         this.currentEmail = val
-
-        const profile = db.list("/profiles",ref=>ref.orderByChild("email").equalTo(this.currentEmail)).valueChanges()
-        profile.subscribe( data => {
-            if(!data[0]["subscribed"]){
-              //app.navCtrl.pop()
-              //app.navCtrl.push(SubscriptionPage)
-            }
+        this.storage.get("subscribed").then((val)=>{
+           if(val == false){
+              app.navCtrl.pop()
+              app.navCtrl.push(SubscriptionPage)
+           }
         })
-
     })
 
     const recalls = db.list("/recalls").valueChanges()
@@ -59,23 +55,15 @@ export class RecallPage {
           "children":[{
               name: recall["manufacturer"],
               information: recall["reason"],
+              recalldate : recall["recalldate"]
           }]
         }
         console.log("this-array",items)
         items.push(recallF1)
       }
-
-      console.log("app.items",items)
-      this.information = {"items":items}
-
+      console.log("app.items",{"items":items})
+      this.information = items
     })
-
-    // let localData = http.get('assets/information.json').map(res => res.json().items);
-    // localData.subscribe(data => {
-    //   this.information = data;
-    // })
-
-
 
   }
 

@@ -34,16 +34,24 @@ export class InsulinguidePage {
               public db: AngularFireDatabase,public storage: Storage) 
   {
     var app = this
-    this.storage.get("currentEmail").then((val)=>{
-        this.currentEmail = val
-        const profile = db.list("/profiles",ref=>ref.orderByChild("email").equalTo(this.currentEmail)).valueChanges()
-        profile.subscribe( data => {
-           if(!data[0]["subscribed"]){
-              app.navCtrl.pop()
-              app.navCtrl.push(SubscriptionPage)
-           }
-        })
-     })
+
+    this.storage.get("subscribed").then((val)=>{
+      if(val == false){
+         app.navCtrl.pop()
+         app.navCtrl.push(SubscriptionPage)
+      }
+    })
+
+    // this.storage.get("currentEmail").then((val)=>{
+    //     this.currentEmail = val
+    //     const profile = db.list("/profiles",ref=>ref.orderByChild("email").equalTo(this.currentEmail)).valueChanges()
+    //     profile.subscribe( data => {
+    //        if(!data[0]["subscribed"]){
+    //           app.navCtrl.pop()
+    //           app.navCtrl.push(SubscriptionPage)
+    //        }
+    //     })
+    //  })
      this.insulinGuide = db.list("/insulinguides").valueChanges() 
   }
 

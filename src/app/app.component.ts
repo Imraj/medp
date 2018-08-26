@@ -99,7 +99,10 @@ export class MyApp {
     this.nav.push(TermsofservicePage)
   }
   logout(){
+
+    this.storage.clear()
     this.nav.setRoot(LoginPage)
+    
   }
 
 }

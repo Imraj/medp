@@ -7,6 +7,11 @@ page-recall {
     }
     #size-3{
         font-size:12px;
+        color:white;
+    }
+
+    .accordion-list{
+        background-color: #8ebac6;
     }
     #title{
         margin-top:1em;
@@ -24,7 +29,7 @@ page-recall {
     }
 
     .accordion-list {
-        background: color($colors, light);
+        background: #8ebac6;
         height: 100%;
     }
     .section {
@@ -33,7 +38,7 @@ page-recall {
         margin-bottom: 4px;
     }
     .section-active {
-        background: #ffc400;
+        background: #323f52;
         color: #fff;
     }
  

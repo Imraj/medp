@@ -61,7 +61,8 @@
 
         <ion-list>
             <ion-item>
-                <ion-toggle>Subscribe to eNewsletter</ion-toggle>
+                <ion-label>Subscribe to eNewsletter</ion-label>
+                <ion-toggle [(ngModel)]="newsletter" (ionChange)="subscribeToNewsletter()"></ion-toggle>
             </ion-item>
         </ion-list>
 

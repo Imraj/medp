@@ -45,7 +45,13 @@
         
                 <!-- Direct Add Button as Fallback -->
                 <ion-item *ngIf="!child.children" ion-item detail-none class="child-item" text-wrap>
-                <h2>{{ child.name }}</h2>
+                <span><b>Manufacturer:</b></span><h2 text-lowercase>{{ child.name }}</h2>
+                <br/>
+
+                <span><b>Recall date:</b></span><h3 text-lowercase>{{ child.recalldate }}</h3>
+                <br/>
+
+                <span><b>Reason for recall:</b></span>
                 <p text-lowercase>{{ child.information }}</p>
                 
                 </ion-item>

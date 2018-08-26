@@ -33,6 +33,7 @@ export class ProfilePage {
     state:""
   }
   email : string
+  newsletter : boolean
 
   profileAge: string
   profileEmail: string
@@ -46,39 +47,67 @@ export class ProfilePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public afAuth: AngularFireAuth, public db: AngularFireDatabase,
               public storage: Storage,public toastCtrl: ToastController,
-              public loadingCtrl: LoadingController) 
-  {
-
-    
-
+              public loadingCtrl: LoadingController,) 
+  { 
+    this.newsletter = false
     this.storage.get("currentEmail").then((val)=>{
 
         this.email = val
         console.log("this.email",this.email)
 
-        const profile = db.list("/profiles", ref=> ref.orderByChild("email").equalTo(this.email)).valueChanges()
-        profile.subscribe(data => {
-          console.log("Data")
-          console.log(data)
-          console.log( data[0] )
-        
-          this.profile.age = data[0]["age"]
-          this.profile.email = data[0]["email"]
-          this.profile.ethnicity = data[0]["ethnicity"]
-          this.profile.fullname = data[0]["fullname"]
-          this.profile.gender = data[0]["gender"]
-          this.profile.occupation = data[0]["occupation"]
-          this.profile.state = data[0]["state"]
-          this.profile.country = data[0]["country"]
-  
-          console.log("pf",this.profile.age,this.profile.email,this.profile.ethnicity,
-                    this.profile.fullname,this.profile.gender,this.profile.occupation,
-                    this.profile.state,this.profile.country)
-        },err=>{
-          console.log("Err")
-          console.log(err)
-        });
+        this.profile.email = val
 
+        // const profile = db.list("/profiles", ref=> ref.orderByChild("email").equalTo(this.email)).valueChanges()
+        // profile.subscribe(data => {
+        //   console.log("Data")
+        //   console.log(data)
+        //   console.log( data[0] )
+        
+        //   this.profile.age = data[0]["age"]
+        //   this.profile.email = data[0]["email"]
+        //   this.profile.ethnicity = data[0]["ethnicity"]
+        //   this.profile.fullname = data[0]["fullname"]
+        //   this.profile.gender = data[0]["gender"]
+        //   this.profile.occupation = data[0]["occupation"]
+        //   this.profile.state = data[0]["state"]
+        //   this.profile.country = data[0]["country"]
+  
+        //   console.log("pf",this.profile.age,this.profile.email,this.profile.ethnicity,
+        //             this.profile.fullname,this.profile.gender,this.profile.occupation,
+        //             this.profile.state,this.profile.country)
+        // },err=>{
+        //   console.log("Err")
+        //   console.log(err)
+        // });
+
+    })
+
+    this.storage.get("age").then((val)=>{
+      this.profile.age = val
+    })
+
+    this.storage.get("ethnicity").then((val)=>{
+      this.profile.ethnicity = val
+    })
+
+    this.storage.get("fullname").then((val)=>{
+      this.profile.fullname = val
+    })
+
+    this.storage.get("gender").then((val)=>{
+       this.profile.gender = val
+    })
+
+    this.storage.get("occupation").then((val)=>{
+        this.profile.occupation = val
+    })
+
+    this.storage.get("state").then((val)=>{
+        this.profile.state = val
+    })
+
+    this.storage.get("country").then((val)=>{
+        this.profile.country = val
     })
 
   }
@@ -144,6 +173,22 @@ export class ProfilePage {
 
   navToInsulin(){
     this.navCtrl.push(InsulinguidePage)
+  }
+
+  subscribeToNewsletter(){
+    if(this.newsletter){
+      let toast = this.toastCtrl.create({
+        message:"You've been succesfully subscribed to our newsletter",
+        duration: 5000
+      })
+      toast.present()
+    }else{
+      let toast = this.toastCtrl.create({
+        message:"You've been unsubscribed from our newsletter",
+        duration: 5000
+      })
+      toast.present()
+    }
   }
 
 }
