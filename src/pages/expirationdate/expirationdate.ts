@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
 /**
@@ -20,7 +20,8 @@ export class ExpirationdatePage {
   resExpdate : string = "";
   resNote: string = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
+              public toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -39,9 +40,10 @@ export class ExpirationdatePage {
     this.navCtrl.push(InsulinguidePage)
   }
 
-  calExpirationDate(){
+  calcExpirationDate(){
     let loader = this.loadingCtrl.create({
-      content:"Processing..."
+      content:"Processing...",
+      duration: 5000
     });
     loader.present();
 

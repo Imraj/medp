@@ -41,11 +41,27 @@
                     <ion-option></ion-option>
                 </ion-select>
             </ion-item>
-            <ion-item [(ngModel)]="profile.state">
-                <ion-input placeholder="Enter State"></ion-input>
+            <ion-item>
+                <ion-input [(ngModel)]="profile.age" placeholder="Enter Age"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input [(ngModel)]="profile.ethnicity" placeholder="Enter Ethnicity"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input [(ngModel)]="profile.state" placeholder="Enter State"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input [(ngModel)]="profile.occupation" placeholder="Enter Occupation"></ion-input>
             </ion-item>
             <ion-item text-center>
-                <button id="btn" ion-button block>Update Profile</button>
+                <button id="btn" ion-button block (click)="updateProfile()">Update Profile</button>
+            </ion-item>
+            
+        </ion-list>
+
+        <ion-list>
+            <ion-item>
+                <ion-toggle>Subscribe to eNewsletter</ion-toggle>
             </ion-item>
         </ion-list>
 

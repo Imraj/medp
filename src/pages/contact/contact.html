@@ -20,7 +20,23 @@
 
 <ion-content padding>
 
-   
+    <ion-list no-lines>
+        <ion-item>
+            <ion-label>Select</ion-label>
+            <ion-select [(ngModel)]="contact.type">
+                <ion-option value="Feedback">Feedback</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-input placeholder="Subject" [(ngModel)]="contact.subject"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-textarea placeholder="Message" [(ngModel)]="contact.message"></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <button ion-button block (click)="sendMessage()">Send</button>
+        </ion-item>
+    </ion-list>
 
 </ion-content>
 

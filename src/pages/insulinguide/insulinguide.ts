@@ -17,7 +17,9 @@ import { RecallPage } from '../recall/recall';
 })
 export class InsulinguidePage {
 
-  
+  showRes = false
+  resExpdate : string = "";
+  resNote: string = "";
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
   }
@@ -38,15 +40,16 @@ export class InsulinguidePage {
     this.navCtrl.push(InsulinguidePage)
   }
 
-  calInsulin(){
+  calcInsulin(){
     let loader = this.loadingCtrl.create({
-      content:"Processing..."
+      content:"Processing...",
+      duration: 5000
     });
     loader.present();
 
     this.showRes = true;
     this.resExpdate = "July 1, 2018";
-    this.resNote = "Notes about medication appears here via ion-card";
+    this.resNote = "Notes about medication appears here";
 
 
   }

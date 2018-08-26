@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
 import { ForgotpwdPage } from '../forgotpwd/forgotpwd';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Storage } from "@ionic/storage"
 
 /**
  * Generated class for the LoginPage page.
@@ -26,8 +28,14 @@ export class LoginPage {
     password: ""
   }
 
+  currentEmail : string
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController,
-              public afAuth:AngularFireAuth, public alertCtrl: AlertController) {
+              public afAuth:AngularFireAuth, public alertCtrl: AlertController,public toastCtrl: ToastController,
+              private storage: Storage,private db: AngularFireDatabase) 
+  {
+    
+    
 
   }
 
@@ -35,33 +43,50 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  login(){
+  login()
+  {
     var app = this;
-    let loader = this.loadingCtrl.create({
-      content:"Please wait..."    
-    });
-    loader.present();
 
     let email = this.loginData.email;
     let pwd = this.loginData.password;
-    return this.afAuth.auth.signInWithEmailAndPassword(email,pwd)
-        .then(function(err){
-           if(err){
-             loader.dismiss();
-             
-             let alert = this.alertCtrl.create({
+    if(email == "" || pwd == "")
+    {
+      let alert = app.alertCtrl.create({
+        title: "Error",
+        subTitle: "Email and Password is required",
+        buttons: ['Ok']
+      });
+      alert.present();
+    }
+    else
+    {
+      let loader = this.loadingCtrl.create({
+        content:"Please wait...",
+      });
+      loader.present();
+
+      return this.afAuth.auth.signInWithEmailAndPassword(email,pwd)
+         .then(function(res){
+
+             loader.dismiss()
+             app.currentEmail = firebase.auth().currentUser.email
+             app.storage.set("currentEmail",app.currentEmail)
+             app.navCtrl.setRoot(HomePage)  
+
+             console.log("app.currentEmail",app.currentEmail)
+
+         },
+         function(err){
+            loader.dismiss();
+              
+            let alert = app.alertCtrl.create({
               title: "Error",
               subTitle: err,
               buttons: ['Ok']
-             });
-             alert.present();
-           }
-           else{
-             loader.dismiss();
-             this.navCtrl.setRoot(HomePage);
-           }
+            });
+            alert.present();
          })
-
+    }
   }
 
   navToRegister(){

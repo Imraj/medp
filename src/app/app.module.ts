@@ -26,14 +26,14 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
-export const firebaseConfig = {
-    apiKey: "AIzaSyDtdcpysDPMgbkl3nVB5wbDbTk_jZkMhKY",
-    authDomain: "medexp-d7f3f.firebaseapp.com",
-    databaseURL: "https://medexp-d7f3f.firebaseio.com",
-    projectId: "medexp-d7f3f",
-    storageBucket: "medexp-d7f3f.appspot.com",
-    messagingSenderId: "1001953293876"
-};
+import {firebaseConfig} from "../environment";
+
+import { IonicStorageModule } from '@ionic/storage';
+
+import { HttpModule } from '@angular/http';
+
+import { Stripe } from "@ionic-native/stripe"
+import { EmailComposer } from '@ionic-native/email-composer';
 
 @NgModule({
   declarations: [
@@ -57,9 +57,11 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -84,6 +86,8 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    Stripe,
+    EmailComposer,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
+
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map'
+
 /**
  * Generated class for the RecallPage page.
  *
@@ -15,8 +19,21 @@ import { InsulinguidePage } from '../insulinguide/insulinguide';
   templateUrl: 'recall.html',
 })
 export class RecallPage {
+  information : any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, private http: Http ,public navParams: NavParams) {
+    let localData = http.get('assets/information.json').map(res => res.json().items);
+    localData.subscribe(data => {
+      this.information = data;
+    })
+  }
+
+  toggleSection(i) {
+    this.information[i].open = !this.information[i].open;
+  }
+ 
+  toggleItem(i, j) {
+    this.information[i].children[j].open = !this.information[i].children[j].open;
   }
 
   ionViewDidLoad() {

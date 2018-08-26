@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController, AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Observable } from 'rxjs';
 /**
  * Generated class for the RegisterPage page.
  *
@@ -26,8 +27,12 @@ export class RegisterPage {
     password2: ""
   }
 
+  profiles : Observable<any>
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
-              public afAuth: AngularFireAuth,public db: AngularFireDatabase) {
+              public afAuth: AngularFireAuth,public db: AngularFireDatabase,public alertCtrl: AlertController) {
+  
+      this.profiles = db.list("/profile").valueChanges()
   }
 
   ionViewDidLoad() {
@@ -35,43 +40,78 @@ export class RegisterPage {
   }
 
   createAccount(){
-
-    let loader = this.loadingCtrl.create({
-      content:"Please wait..."    
-    });
-    loader.present();
-
+    var app = this
     let email = this.regData.email;
     let fullname = this.regData.fullname;
     let pwd = this.regData.password;
 
-    return this.afAuth.auth.createUserWithEmailAndPassword(email,pwd)
-        .then(function(err){
-          if(err){
-            loader.dismiss();
-            let alert = this.alertCtrl.create({
-             title: "Error",
-             subTitle: err,
-             buttons: ['Ok']
-            });
-            alert.present();
+    if(email == "" || fullname == "" || pwd == "")
+    {
+      let alert = app.alertCtrl.create({
+        title: "Error",
+        subTitle: "Fullname, Email and Password is required",
+        buttons: ['Ok']
+      });
+      alert.present();
+    }
+    else
+    {
 
-          }
-          else{
+      let loader = app.loadingCtrl.create({
+        content:"Please wait..."    
+      });
+      loader.present();
+
+      firebase.database().ref('profiles').push({
+          admin:false,
+          age:"",
+          email:email,
+          ethnicity:"",
+          gender:"",
+          occupation:"",
+          state:"",
+          country:"",
+          subscribed:false,
+          subscribed_date:"",
+          fullname:fullname
+      });
+
+      return this.afAuth.auth.createUserWithEmailAndPassword(email,pwd)
+        .then(function(res){
+        
             loader.dismiss();
-            let alert = this.alertCtrl.create({
+            let alert = app.alertCtrl.create({
               title: "Success",
               subTitle: "Account created successfully. Login to continue",
               buttons: ['Ok']
              });
              alert.present();
-          }
-        })
 
+             firebase.auth().currentUser.sendEmailVerification()
+                     .then(function(){
+
+                     })
+                     .catch(function(error){
+
+                     })
+          
+        },
+        function(error){
+          loader.dismiss();
+          let alert = app.alertCtrl.create({
+            title: "Error",
+            subTitle: error.message,
+            buttons: ['Ok']
+          });
+          alert.present();
+        })
+    }
   }
 
   navToLogin(){
     this.navCtrl.push(LoginPage)
   }
+
+  
 
 }

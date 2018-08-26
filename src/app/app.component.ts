@@ -14,6 +14,11 @@ import { SubscriptionPage } from "../pages/subscription/subscription";
 import { TermsofservicePage } from "../pages/termsofservice/termsofservice";
 import { LoginPage } from '../pages/login/login';
 
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Storage } from "@ionic/storage"
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -22,9 +27,12 @@ export class MyApp {
 
   rootPage: any = LoginPage;
 
+  currentUser : string
+
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+              public storage: Storage) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -42,12 +50,18 @@ export class MyApp {
 
   }
 
-  initializeApp() {
+  initializeApp(){
+    var app = this
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.storage.get("currentEmail").then((val)=>{
+        app.currentUser = val
+        app.rootPage = app.currentUser ? HomePage : LoginPage
+      })
+      
     });
   }
 

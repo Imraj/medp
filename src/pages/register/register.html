@@ -31,11 +31,11 @@
         </ion-item>
    
         <ion-item>
-           <ion-input [(ngModel)]="regData.password" placeholder="Password"></ion-input>
+           <ion-input type="password" [(ngModel)]="regData.password" placeholder="Password"></ion-input>
         </ion-item>
    
         <ion-item>
-            <ion-input [(ngModel)]="regData.password2" placeholder="Password Again"></ion-input>
+            <ion-input type="password" [(ngModel)]="regData.password2" placeholder="Password Again"></ion-input>
          </ion-item>
 
         <ion-item text-center>
@@ -43,7 +43,7 @@
         </ion-item>
 
         <ion-item text-center>
-            <button ion-button outline id="linkBtn">Login to account</button>
+            <button ion-button clear outline id="linkBtn" (click)="navToLogin()">Login to account</button>
         </ion-item>
    
      </ion-list>
