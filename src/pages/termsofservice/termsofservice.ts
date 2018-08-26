@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /**
@@ -15,7 +16,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
   templateUrl: 'termsofservice.html',
 })
 export class TermsofservicePage {
-  
+
   constructor(public navCtrl: NavController, public navParams: NavParams,private iab:InAppBrowser) {
     const browser = this.iab.create('https://ionicframework.com/')
   }

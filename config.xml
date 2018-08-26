@@ -85,4 +85,5 @@
     <plugin name="cordova-plugin-stripe" spec="^1.5.3" />
     <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <engine name="browser" spec="~5.0.4" />
 </widget>
