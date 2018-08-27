@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -25,7 +25,8 @@ export class ForgotpwdPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public afAuth:AngularFireAuth,private storage: Storage,
-    private db: AngularFireDatabase) 
+    private db: AngularFireDatabase,public loadingCtrl: LoadingController,
+    private toastCtrl: ToastController) 
   {
 
   }
@@ -36,13 +37,24 @@ export class ForgotpwdPage {
 
   retrievePassword(){
 
+    let loader = this.loadingCtrl.create({
+      content: "Loading...Please wait"
+    })
+    loader.present()
+
+    let toast = this.toastCtrl.create({
+      message: "Password Reset Email Sent",
+      duration: 10000
+    })
+
     let email = this.forgotPwdData.email
     firebase.auth().sendPasswordResetEmail(email)
     .then(function(){
-
+        loader.dismiss()
+        toast.present()
     })
     .catch(function(){
-      
+        loader.dismiss()
     })
 
   }

@@ -5,7 +5,8 @@ import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
 import { Stripe } from "@ionic-native/stripe"
 
-import { Http } from '@angular/http';
+//import { Headers,Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map'
 import { AngularFireDatabase } from 'angularfire2/database';
 
@@ -34,7 +35,7 @@ export class SubscriptionPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private stripe: Stripe,
               public alertCtrl: AlertController, public loadingCtrl: LoadingController,
-              public http: Http, public db: AngularFireDatabase,private storage: Storage) {
+              public http: HttpClient, public db: AngularFireDatabase,private storage: Storage) {
 
                 this.storage.get("currentEmail").then((val)=>{
 
@@ -82,13 +83,12 @@ export class SubscriptionPage {
     })
     .then(token=>{
       console.log(token)
-      this.http.post("https://medpayment.herokuapp.com/processpay",{
-        stripetoken:token.id
-      })
+      console.log("token.id",token.id)
+      this.http.post("https://medpayment.herokuapp.com/processpay",{stripetoken:token.id})
       .subscribe(res=>{
-          console.log("Payment-Resp",res)
+          console.log("Payment-Resp-2",res)
           loading.dismiss()
-          if(res.json().success){
+          if(res){
             
             this.http.post("https://medexp.000webhostapp.com/mail.php",{
               email: this.email

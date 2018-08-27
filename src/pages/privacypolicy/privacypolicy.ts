@@ -19,7 +19,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 export class PrivacypolicyPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private iab:InAppBrowser) {
-    const browser = this.iab.create('https://ionicframework.com/')
+    const browser = this.iab.create('https://www.medexpiration.com/privacy.html')
   }
 
   ionViewDidLoad() {

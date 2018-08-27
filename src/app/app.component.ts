@@ -19,6 +19,8 @@ import * as firebase from 'firebase/app';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from "@ionic/storage"
 
+
+
 @Component({
   templateUrl: 'app.html'
 })

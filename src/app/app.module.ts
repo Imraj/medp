@@ -30,7 +30,8 @@ import {firebaseConfig} from "../environment";
 
 import { IonicStorageModule } from '@ionic/storage';
 
-import { HttpModule } from '@angular/http';
+//import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { Stripe } from "@ionic-native/stripe"
 import { EmailComposer } from '@ionic-native/email-composer';
@@ -62,7 +63,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    HttpModule
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
