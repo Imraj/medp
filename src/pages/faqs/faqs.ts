@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
+import { AngularFireDatabase } from 'angularfire2/database';
 /**
  * Generated class for the FaqsPage page.
  *
@@ -17,11 +18,33 @@ import { InsulinguidePage } from '../insulinguide/insulinguide';
 })
 export class FaqsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  information : any[];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+              public afDb:AngularFireDatabase) {
+
+    const faqs = this.afDb.list("/faqs").valueChanges();
+    faqs.subscribe( rec => {
+      
+      let items = []
+      for(var r in rec)
+      {
+        let faq = rec[r]
+        let faqF1 = {
+          "name":faq["question"],
+          "children":[{
+              name: faq["answer"]
+          }]
+        }
+        items.push(faqF1)
+      }
+      this.information = items
+    })
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FaqsPage');
+    
   }
 
   navToExpirationdate(){
@@ -35,5 +58,14 @@ export class FaqsPage {
   navToInsulin(){
     this.navCtrl.push(InsulinguidePage)
   }
+
+  toggleSection(i) {
+    this.information[i].open = !this.information[i].open;
+  }
+ 
+  toggleItem(i, j) {
+    this.information[i].children[j].open = !this.information[i].children[j].open;
+  }
+
 
 }

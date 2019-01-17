@@ -55,11 +55,12 @@ export class RecallPage {
           "children":[{
               name: recall["manufacturer"],
               information: recall["reason"],
-              recalldate : recall["recalldate"]
+              recalldate : recall["date"]["day"] + "/" + recall["date"]["month"] + "/" + recall["date"]["year"]
           }]
         }
         console.log("this-array",items)
         items.push(recallF1)
+        console.log("recallF1",recallF1)
       }
       console.log("app.items",{"items":items})
       this.information = items

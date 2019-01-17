@@ -3,57 +3,82 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <div>
-        <img src="assets/imgs/mlogo.png" width="50" height="50"/>
-    </div>
+    
     <ion-title class="title">
-      <span id="titleText">Med Expiration</span>
+        <ion-grid>
+            <ion-row>
+                
+                <ion-col col-3>
+                    <img src="assets/imgs/mlogo.png" width="50" height="50"/>
+                </ion-col>
+                <ion-col col-4 style="margin-top:10px;">
+                        <span id="titleText">Med Expiration</span>
+                </ion-col>
+                
+            </ion-row>
+        </ion-grid>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  
-    <div text-center id="title">
-        <span id="size-1">Main Menu</span>
-    </div>
 
     <ion-grid>
  
         <ion-row (click)="navToExpirationdate()">
-          <ion-col col-3>
-              <img src="assets/icons/h-calendar.png" width="50" height="50" />
+          <ion-col col-2>
+              <img src="assets/icons/h-calendar.png" width="40" height="40" />
           </ion-col>
           <ion-col col-9>
               <div id="home-menu">
-                <span id="size-2">Expiration Date Calculator</span>
+                <span id="size-2">
+                    Expiration Date Calculator
+                </span>
               </div>
           </ion-col>
+          <ion-col>
+                <span class="tooltip-toggle-2" data-tooltip="Calculates the expiration date of the medication">
+                    <img src="assets/icons/help.png" width="15" height="15"/>
+                </span>
+          </ion-col>
+          
         </ion-row>
+       
    
         <ion-row (click)="navToInsulin()">
-          <ion-col col-3>
+          <ion-col col-2>
               <img src="assets/icons/h-tan.png" width="50" height="50" />
           </ion-col>
-          <ion-col col-9>
+          <ion-col col-8>
             <div id="home-menu">
                <span id="size-2">Insulin Expiration Guide</span>
                <br/>
-               <span id="size-3"><i>Via Annual Subscription</i></span>
+               <span id="size-3" (click)="navToSub()"><i>Via Annual Subscription</i></span>
              </div>
           </ion-col>
+          <ion-col>
+                <span class="tooltip-toggle" data-tooltip="Guide on insulins including their form, storage information, and expiration date">
+                    <img src="assets/icons/help.png" width="15" height="15"/>
+                </span>
+          </ion-col>
+         
         </ion-row>
    
         <ion-row (click)="navToRecall()">
           <ion-col col-3>
               <img src="assets/icons/h-warning.png" width="50" height="50" />
           </ion-col>
-          <ion-col col-9>
+          <ion-col col-8>
              <div id="home-menu">
                 <span id="size-2">Medication Recalls</span>
                 <br/>
-                <span id="size-3"><i>Via Annual Subscription</i></span>
+                <span id="size-3" (click)="navToSub()"><i>Via Annual Subscription</i></span>
              </div>
+          </ion-col>
+          <ion-col >
+                <span class="tooltip-toggle" data-tooltip=" Information regarding specific recalls-Including manufacturer, lot numbers and reason for recall">
+                    <img src="assets/icons/help.png" width="15" height="15"/>
+                </span>
           </ion-col>
         </ion-row>
    

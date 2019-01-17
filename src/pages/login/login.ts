@@ -30,6 +30,10 @@ export class LoginPage {
 
   currentEmail : string
 
+  public type = 'password';
+  public showPass = false;
+ 
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController,
               public afAuth:AngularFireAuth, public alertCtrl: AlertController,public toastCtrl: ToastController,
               private storage: Storage,private db: AngularFireDatabase) 
@@ -41,6 +45,16 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+  }
+
+  showPassword() {
+    this.showPass = !this.showPass;
+ 
+    if(this.showPass){
+      this.type = 'text';
+    } else {
+      this.type = 'password';
+    }
   }
 
   login()

@@ -7,11 +7,18 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <div>
-        <img src="assets/imgs/mlogo.png" width="50" height="50"/>
-    </div>
     <ion-title>
-        <span id="titleText">Contact / Provide feedback</span>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-3>
+                    <img src="assets/imgs/mlogo.png" width="50" height="50"/>
+                </ion-col>
+                <ion-col col-3 style="margin-top:10px;">
+                        <span id="titleText">Contact Us</span>
+                </ion-col>
+                <ion-col col-2></ion-col>
+            </ion-row>
+        </ion-grid>
     </ion-title>
   </ion-navbar>
 
@@ -24,7 +31,9 @@
         <ion-item>
             <ion-label>Select</ion-label>
             <ion-select [(ngModel)]="contact.type">
-                <ion-option value="Feedback">Feedback</ion-option>
+                <ion-option value="app-feedback">App Feedback </ion-option>
+                <ion-option value="medication-missing">Medication Missing</ion-option>
+                <ion-option value="something-else">Something Else</ion-option>
             </ion-select>
         </ion-item>
         <ion-item>
@@ -34,7 +43,7 @@
             <ion-textarea placeholder="Message" [(ngModel)]="contact.message"></ion-textarea>
         </ion-item>
         <ion-item>
-            <button ion-button block (click)="sendMessage()">Send</button>
+            <button ion-button block (click)="submitFeedback()">Send</button>
         </ion-item>
     </ion-list>
 

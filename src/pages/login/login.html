@@ -1,17 +1,25 @@
-<!--
-  Generated template for the LoginPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar color="primary">
-    <div>
-        <img src="assets/imgs/mlogo.png" width="50" height="50"/>
-    </div>
-    <ion-title>
-        <span id="titleText">Login</span>
+    <ion-title style>
+        <ion-grid>
+            <ion-row>
+              
+              <ion-col col-3>
+                  <img src="assets/imgs/mlogo.png" width="50" height="50"/>
+              </ion-col>
+              <ion-col col-3 style="margin-top:10px;">
+                  <span>Login</span>
+              </ion-col>
+              <ion-col col-2></ion-col>
+            </ion-row>
+        </ion-grid>
+
+          <!-- <div>Login</div>
+          <img src="assets/imgs/mlogo.png" width="50" height="50"/> -->
+      
+        <!-- <div style="width:50%;" id="titleText">Login</div> -->
+        <!-- <span style="margin-bottom:3em;" id="titleText">Login</span> -->
     </ion-title>
   </ion-navbar>
 
@@ -26,7 +34,15 @@
      </ion-item>
 
      <ion-item>
-        <ion-input type="password" [(ngModel)]="loginData.password" placeholder="Password"></ion-input>
+        <ion-input type="{{type}}" [(ngModel)]="loginData.password" placeholder="Password"></ion-input>
+    
+        <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="ios-eye-off-outline"></ion-icon></button>
+        <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> <ion-icon name="ios-eye-outline"></ion-icon></button>
+      </ion-item>
+
+     <ion-item>
+        <ion-label>Stay logged in ?</ion-label>
+        <ion-toggle [(ngModel)]="loginData.stay"></ion-toggle>
      </ion-item>
 
      <ion-item>

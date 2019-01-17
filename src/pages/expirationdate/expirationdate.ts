@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
+import { ContactPage } from "../contact/contact"
 
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -13,12 +14,25 @@ import { Storage } from "@ionic/storage"
 import { Observable } from 'rxjs';
 
 import { SubscriptionPage } from '../subscription/subscription';
+
+import { IonicSelectableComponent } from 'ionic-selectable';
+
+import { CompleterService, CompleterData } from 'ng2-completer';
+
 /**
  * Generated class for the ExpirationdatePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
+class Brand {
+  public brand: string;
+}
+
+class Type {
+  public name: string;
+}
 
 @IonicPage()
 @Component({
@@ -28,18 +42,67 @@ import { SubscriptionPage } from '../subscription/subscription';
 export class ExpirationdatePage {
 
   showRes = false
-  resExpdate : string = "";
+  notShowRes = false
+
+  extraDays = 0;
+  resDate = new Date();
   resNote: string = "";
 
   medTypes: Observable<any[]>
   medications: Observable<any[]>
 
   currentEmail : string
+
+  expdate = {
+    medtype: "",
+    medbrand: "",
+    meddate: ""
+  }
+  
+  brands: String[] = [];
+
+  types: String[] = [];
+
+  typeplaceholder : string;
+  brandplaceholder : string;
+
+  protected dataService: CompleterData;
+
+  protected captains = ['James T. Kirk', 'Benjamin Sisko', 'Jean-Luc Picard', 'Spock', 'Jonathan Archer', 'Hikaru Sulu', 'Christopher Pike', 'Rachel Garrett' ];
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
-              public toastCtrl: ToastController,private db: AngularFireDatabase,public storage: Storage) 
+              public toastCtrl: ToastController,private db: AngularFireDatabase,public storage: Storage,
+              public alertCtrl: AlertController,private completerService: CompleterService) 
   {
-      this.medTypes = db.list("medications").valueChanges()
+      this.medTypes = db.list("medtype").valueChanges()
+
+      this.typeplaceholder = "Type"
+      this.brandplaceholder = "Brand / Generic"
+
+      db.list("medtype").valueChanges()
+        .subscribe((snapshot)=>{
+          snapshot.forEach(element => {
+            const mObject = <any>element
+            this.types.push(
+              mObject.medname
+            )
+          })
+          this.dataService = completerService.local(this.types, 'name', 'name')
+        })
+
+      db.list("medications").valueChanges()
+        .subscribe((snapshot)=>{
+          snapshot.forEach(element => {
+             const mObject = <any>element
+             this.brands.push(
+               mObject.medBrand
+             )
+          })
+          
+        })
+
       this.medications = db.list("medications").valueChanges()
+
+      this.dataService = completerService.local(this.types, 'name', 'name');
   }
 
   ionViewDidLoad() {
@@ -57,21 +120,78 @@ export class ExpirationdatePage {
   navToInsulin(){
     this.navCtrl.push(InsulinguidePage)
   }
+  
 
   calcExpirationDate(){
-    var app = this
-    let loader = this.loadingCtrl.create({
-        content:"Processing...",
-        duration: 5000
-    });
-    loader.present();
-    setTimeout(function(){
-      app.showRes = true;
-      app.resExpdate = "July 1, 2018";
-      app.resNote = "Notes about medication appears here via ion-card";
-    },5000)
+    if(this.expdate.medtype == "" || this.expdate.meddate == "" || this.expdate.medbrand == ""
+    || this.expdate.medtype == null || this.expdate.meddate == null || this.expdate.medbrand == null)
+    {
+      let alert = this.alertCtrl.create({
+        title: "Error",
+        subTitle: "All fields are required",
+        buttons: ['Ok']
+      })
+      alert.present()
+    }
+    else{
+      var app = this
+      let loader = this.loadingCtrl.create({
+          content:"Processing...",
+          duration: 5000
+      });
+      loader.present();
+  
+      let f_medtype = this.expdate.medtype
+      let f_meddate = this.expdate.meddate
+      let f_medbrand = this.expdate.medbrand
+      console.log("f_medtype",f_medtype["name"])
+      this.db.list("/medications",ref=>ref.orderByChild("medType").equalTo(f_medtype["name"]))
+          .valueChanges()
+          .subscribe(data=>{
+              
+              loader.dismiss()
+              console.log("Exp-Data-web2",data,data.length)
+              for(let i=0;i<data.length;i++){
+                let d = data[i];
+                console.log(typeof d["medType"], typeof String(f_medtype) )
+                console.log(d["medType"] == String(f_medtype) )
+                if(d["medBrand"] == f_medbrand["name"]) {
+                  app.extraDays = parseInt(d["medDate"])
+
+                  if(app.extraDays < 0){
+                    app.resNote = d["medNote"]
+                    this.notShowRes = true
+                  }else{
+                    let rDate = new Date(app.expdate.meddate)//new Date(openYear+"-"+openMonth+"-"+openDay);
+                    rDate.setDate(rDate.getDate() + app.extraDays)
+                    
+                    //console.log("rDate",rDate)
+                    app.resDate = rDate
+                    console.log("resDate",app.resDate)
+                    app.resNote = d["medNote"]
+                    this.showRes = true
+                  }
+
+                  
+                }
+                
+              } 
+          }) 
+    }
+
+   
+
+  }
+
+  navToContact(){
+     this.navCtrl.push(ContactPage)
   }
     
-  
+  portChange(event: {
+    component: IonicSelectableComponent,
+    value: any 
+  }) {
+    console.log('port:', event.value);
+  }
 
 }

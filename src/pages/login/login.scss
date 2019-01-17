@@ -1,6 +1,8 @@
 page-login {
     #titleText{
-        color: #938f71;
+        color: #a38f73;
+        margin-top: 3em;
+        
      }
 
     #loginBtn{
@@ -9,6 +11,10 @@ page-login {
 
     #linkBtn{
         height: 2em;
+    }
+
+    ion-content{
+        background-color:#f6f5f3
     }
 
 }

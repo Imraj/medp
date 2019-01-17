@@ -1,6 +1,6 @@
 page-profile {
     #titleText{
-        color: #938f71;
+        color: #ddd1c1;
     }
     #size-1{
         font-size:22px;   
@@ -18,5 +18,8 @@ page-profile {
     }
     #btn{
         height:3em;
+    }
+    ion-content{
+        background-color:#f6f5f3
     }
 }

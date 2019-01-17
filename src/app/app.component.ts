@@ -50,6 +50,30 @@ export class MyApp {
       { title: 'Terms of Service', component: TermsofservicePage  },
     ];
 
+    // const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(email)).valueChanges()
+    // profile.subscribe(data => {
+    
+    //   let user = {"age":data[0]["age"],
+    //               "admin":data[0]["admin"],
+    //               "email":data[0]["email"],
+    //               "ethnicity":data[0]["ethnicity"],
+    //               "fullname":data[0]["fullname"],
+    //               "gender":data[0]["gender"],
+    //               "occupation":data[0]["occupation"],
+    //               "state":data[0]["state"],
+    //               "country":data[0]["country"],
+    //               "subscribed":data[0]["subscribed"],
+    //               "subscribed_date":data[0]["subscribed_date"]
+    //   }
+      
+    //   console.log("str-user",user)
+    //   this.storage.setItem("user",user).subscribe(()=>{})
+
+    // },err=>{
+    //   console.log("Err")
+    //   console.log(err)
+    // });
+
   }
 
   initializeApp(){

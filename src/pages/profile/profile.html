@@ -7,11 +7,19 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <div>
-        <img src="assets/imgs/mlogo.png" width="50" height="50"/>
-    </div>
     <ion-title>
-        <span id="titleText">Profile</span>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-3>
+                    <img src="assets/imgs/mlogo.png" width="50" height="50"/>
+                </ion-col>
+                <ion-col col-3 style="margin-top:10px;">
+                    <span id="titleText">Profile</span>
+                </ion-col>
+                <ion-col col-2></ion-col>
+            </ion-row>
+        </ion-grid>
+        
     </ion-title>
   </ion-navbar>
 
@@ -38,7 +46,9 @@
             <ion-item>
                 <ion-label>Select Country</ion-label>
                 <ion-select [(ngModel)]="profile.country">
-                    <ion-option></ion-option>
+                    <ion-option *ngFor="let c of countryList" value="c">
+                        {{ c }}
+                    </ion-option>
                 </ion-select>
             </ion-item>
             <ion-item>
@@ -53,6 +63,10 @@
             <ion-item>
                 <ion-input [(ngModel)]="profile.occupation" placeholder="Enter Occupation"></ion-input>
             </ion-item>
+            <ion-item>
+                <ion-label>Subscribe to eNewsletter</ion-label>
+                <ion-toggle [(ngModel)]="newsletter" (ionChange)="subscribeToNewsletter()"></ion-toggle>
+            </ion-item>
             <ion-item text-center>
                 <button id="btn" ion-button block (click)="updateProfile()">Update Profile</button>
             </ion-item>
@@ -60,9 +74,8 @@
         </ion-list>
 
         <ion-list>
-            <ion-item>
-                <ion-label>Subscribe to eNewsletter</ion-label>
-                <ion-toggle [(ngModel)]="newsletter" (ionChange)="subscribeToNewsletter()"></ion-toggle>
+            <ion-item text-center>
+                <button id="btn" ion-button block (click)="navToChangepwd()">Change Password</button>
             </ion-item>
         </ion-list>
 

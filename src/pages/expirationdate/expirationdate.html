@@ -5,16 +5,22 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar color="primary">
-    <div>
-        <img src="assets/imgs/mlogo.png" width="50" height="50"/>
-    </div>
-    <ion-title>
-        <span id="titleText">Expiration Date</span>
-    </ion-title>
-  </ion-navbar>
 
+    <ion-title>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-3>
+                    <img src="assets/imgs/mlogo.png" width="50" height="50"/>
+                </ion-col>
+                <ion-col col-4 style="margin-top:10px;">
+                    <span id="titleText">Expiration Date</span>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-title>
+
+  </ion-navbar>
 </ion-header>
 
 
@@ -25,26 +31,28 @@
     </div>
 
     <ion-list no-lines>
+
         <ion-item>
-            <ion-label>Select Medication Type</ion-label>
-            <ion-select>
-                <ion-option *ngFor="let med of medTypes | async">
-                    {{ med.medType }}
-                </ion-option>
-            </ion-select>
+            <ng2-completer class="completer" [(ngModel)]="expdate.medtype" [datasource]="types" [minSearchLength]="1"></ng2-completer>
+            <span class="tooltip-toggle" data-tooltip=" Company or Medical name of medication.">
+                <img src="assets/icons/help.png" width="15" height="15"/>
+            </span>
         </ion-item>
+        
+
         <ion-item>
-            <ion-label>Select Medication</ion-label>
-            <ion-select>
-                <ion-option *ngFor="let med of medications | async">
-                    {{ med.medName }}
-                </ion-option>
-            </ion-select>
+            <ng2-completer [(ngModel)]="expdate.medbrand" [datasource]="brands" [minSearchLength]="1"></ng2-completer>
+            <span class="tooltip-toggle" data-tooltip=" Company or Medical name of medication.">
+                <img src="assets/icons/help.png" width="15" height="15"/>
+            </span>
         </ion-item>
+
         <ion-item>
             <ion-label>Date Opened</ion-label>
-            <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+            <ion-datetime [(ngModel)]="expdate.meddate" displayFormat="MM/DD/YYYY"></ion-datetime>
+            
         </ion-item>
+
         <ion-item text-center>
             <button id="submitBtn" ion-button primary medium (click)="calcExpirationDate()">Submit</button>
         </ion-item>
@@ -52,10 +60,16 @@
 
     <div *ngIf="showRes">
         <div id="res-1">Expires on</div>
-        <div id="res-2" text-center>{{ resExpdate }}</div>
+        <div id="res-2" text-center>{{ resDate }}</div>
         <div id="res-3">Notes:</div>
         <ion-card id="res-4"> {{resNote}}</ion-card>
-        <div id="res-1">See Manufacturers label for unopened Shelf Life</div>
+        <div id="res-6">See Manufacturer's label for additional details</div>
+    </div>
+
+    <div *ngIf="notShowRes">
+        <div id="res-3">Notes:</div>
+        <ion-card id="res-4"> {{resNote}}</ion-card>
+        <div id="res-6">See Manufacturer's label for additional details</div>
     </div>
 
 </ion-content>

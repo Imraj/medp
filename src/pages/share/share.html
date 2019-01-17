@@ -7,11 +7,20 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <div>
-        <img src="assets/imgs/mlogo.png" width="50" height="50"/>
-    </div>
     <ion-title>
-        <span id="titleText">Share</span>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-2></ion-col>
+                <ion-col col-5>
+                    <img src="assets/imgs/mlogo.png" width="50" height="50"/>
+                </ion-col>
+                <ion-col col-3 style="margin-top:10px;">
+                    <span id="titleText">Share</span>
+                </ion-col>
+                <ion-col col-2></ion-col>
+            </ion-row>
+        </ion-grid>
+        
     </ion-title>
   </ion-navbar>
 
@@ -29,6 +38,10 @@
         </ion-item>
         <ion-item>
             <ion-input [(ngModel)]="share.email3" placeholder="Email Address" ></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-textarea [(ngModel)]="share.message" placeholder="Message">
+            </ion-textarea>
         </ion-item>
         <ion-item text-center>
             <button ion-button block (click)="shareWithContacts()">Share</button>

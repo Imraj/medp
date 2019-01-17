@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
 import { EmailComposer } from '@ionic-native/email-composer';
+
+import { HTTP } from '@ionic-native/http';
+import { Storage } from "@ionic/storage"
 
 /**
  * Generated class for the ContactPage page.
@@ -25,7 +28,11 @@ export class ContactPage {
     message:"",
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private emailComposer: EmailComposer) {
+  email: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+      private toastCtrl: ToastController,
+      private emailComposer: EmailComposer, private http: HTTP,private storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -46,11 +53,42 @@ export class ContactPage {
 
   submitFeedback(){
     let email = {
-      to: "contact@medexp.com",
+      to: "admin@medexpiration.com",
       subject: this.contact.type + ":" + this.contact.subject,
       body:this.contact.message,
+      type: this.contact.type
     }    
-    this.emailComposer.open(email)
+    
+
+    this.storage.get("currentEmail").then((val)=>{
+
+      this.email = val
+
+      this.http.get('https://medexp.000webhostapp.com/contact.php', {subject:email.subject,message:email.body,type:email.type,from:val}, {})
+        .then(data => {
+
+          console.log("Getting Data")
+          console.log(data.status);
+          console.log(data.data);
+          console.log(data.headers);
+
+          const toast = this.toastCtrl.create({
+            message:"Message Sent Successfully",
+            duration:5000
+          })
+          toast.present()
+
+        })
+        .catch(error => {
+
+          console.log(error.status);
+          console.log(error.error); // error message as string
+          console.log(error.headers);
+
+        });
+
+    })
+
   }
 
 }

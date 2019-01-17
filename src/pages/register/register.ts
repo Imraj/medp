@@ -6,6 +6,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs';
+
+import { HTTP } from '@ionic-native/http';
+
 /**
  * Generated class for the RegisterPage page.
  *
@@ -30,9 +33,10 @@ export class RegisterPage {
   profiles : Observable<any>
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
-              public afAuth: AngularFireAuth,public db: AngularFireDatabase,public alertCtrl: AlertController) {
+              public afAuth: AngularFireAuth,public db: AngularFireDatabase,public alertCtrl: AlertController,
+              public http: HTTP) {
   
-      this.profiles = db.list("/profile").valueChanges()
+      this.profiles = db.list("/profiles").valueChanges()
   }
 
   ionViewDidLoad() {
@@ -94,6 +98,8 @@ export class RegisterPage {
                      .catch(function(error){
 
                      })
+
+             this.http.get("https://medexp.000webhostapp.com/welcome.php",{email: email},{})
           
         },
         function(error){

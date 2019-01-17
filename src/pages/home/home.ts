@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
+import { SubscriptionPage } from "../subscription/subscription"
 
 @Component({
   selector: 'page-home',
@@ -25,6 +26,10 @@ export class HomePage {
 
   navToInsulin(){
     this.navCtrl.push(InsulinguidePage)
+  }
+
+  navToSub(){
+    this.navCtrl.push(SubscriptionPage)
   }
 
 }

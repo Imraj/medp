@@ -5,16 +5,20 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar color="primary">
-      <div>
-          <img src="assets/imgs/mlogo.png" width="50" height="50"/>
-      </div>
-    <ion-title>
-        <span id="titleText">Recall</span>
+    <ion-title class="title">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-3>
+                    <img src="assets/imgs/mlogo.png" width="50" height="50"/>
+                </ion-col>
+                <ion-col col-4 style="margin-top:10px;">
+                        <span id="titleText">Recall</span>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
     </ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
@@ -68,17 +72,17 @@
 <ion-footer>
     <ion-row>
         <ion-col no-padding>
-            <button no-margin ion-button full large color="primary">
+            <button no-margin ion-button full large color="primary" (click)="navToExpirationdate()">
               <img src="assets/imgs/calendar.png" width="35" height="35"/>
             </button>
         </ion-col>
         <ion-col no-padding>
-            <button no-margin ion-button full large color="primary">
+            <button no-margin ion-button full large color="primary" (click)="navToInsulin()">
                 <img src="assets/imgs/tan.png" width="25" height="35"/>
             </button>
         </ion-col>
         <ion-col no-padding>
-            <button no-margin ion-button full large color="primary">
+            <button no-margin ion-button full large color="primary" (click)="navToRecall()">
                 <img src="assets/imgs/warning.png" width="35" height="35"/>
                 <span style="color: red;margin-bottom: 1em;">*</span>
             </button>

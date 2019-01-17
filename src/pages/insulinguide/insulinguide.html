@@ -7,11 +7,17 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <div>
-        <img src="assets/imgs/mlogo.png" width="50" height="50"/>
-    </div>
     <ion-title>
-        <span id="titleText">Insulin Guide</span>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-3>
+                    <img src="assets/imgs/mlogo.png" width="50" height="50"/>
+                </ion-col>
+                <ion-col col-4 style="margin-top:10px;">
+                    <span id="titleText">Insulin Guide</span>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
     </ion-title>
   </ion-navbar>
 
@@ -26,48 +32,17 @@
 
     <ion-list no-lines id="insulin-page-list">
         <ion-item id="insulin-page-list">
-            <ion-label>Select Insulin Name</ion-label>
-            <ion-select>
-                <ion-option *ngFor="let insulin of insulinGuide | async">
-                    {{ insulin.name }}
-                </ion-option>
-            </ion-select>
+            <!-- <ion-auto-complete type="text" [dataProvider]="insulinGuide.brand" placeholder="Enter Brand" [(ngModel)]="ins.brand"></ion-auto-complete> -->
+            <ng2-completer [(ngModel)]="ins.medbrand" [placeholder]="brandplaceholder" [datasource]="brands" [minSearchLength]="1"></ng2-completer>
+            <span class="tooltip-toggle" data-tooltip="Company/Medical name of medication.">
+                <img src="assets/icons/help.png" width="15" height="15"/>
+            </span>
         </ion-item>
+
         <ion-item id="insulin-page-list">
-            <ion-label>Select Brand</ion-label>
-            <ion-select>
-                <ion-option *ngFor="let insulin of insulinGuide | async">
-                    {{ insulin.brand }}
-                </ion-option>
-            </ion-select>
-        </ion-item>
-        <ion-item id="insulin-page-list">
-            <ion-label>Select Type</ion-label>
-            <ion-select>
-                <ion-option *ngFor="let insulin of insulinGuide | async">
-                        {{ insulin.type }}
-                </ion-option>
-            </ion-select>
-        </ion-item>
-        <ion-item id="insulin-page-list">
-            <ion-label>Select ML</ion-label>
-            <ion-select>
-                    <ion-option *ngFor="let insulin of insulinGuide | async">
-                            {{ insulin.ml }}
-                    </ion-option>
-            </ion-select>
-        </ion-item>
-        <ion-item id="insulin-page-list">
-            <ion-label><span>Refrigerated?</span></ion-label>
-            <ion-toggle checked="false"></ion-toggle>
-        </ion-item>
-        <ion-item id="insulin-page-list">
-            <ion-label><span>Opened?</span></ion-label>
-            <ion-toggle checked="false"></ion-toggle>
-        </ion-item>
-        <ion-item id="insulin-page-list">
-            <ion-label>Date Opened</ion-label>
-            <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+            <ion-label color="primary">Date Opened</ion-label>
+            <ion-datetime [(ngModel)]="ins.date" displayFormat="MM/DD/YYYY"></ion-datetime>
+            
         </ion-item>
         <ion-item id="insulin-page-list" text-center>
             <button id="submitBtn" ion-button primary (click)="calcInsulin()">Submit</button>
@@ -76,10 +51,16 @@
 
     <div *ngIf="showRes">
         <div id="res-1">Expires on</div>
-        <div id="res-2" text-center>{{ resExpdate }}</div>
+        <div id="res-2" text-center>{{ resDate }}</div>
         <div id="res-3">Notes:</div>
         <ion-card id="res-4"> {{resNote}}</ion-card>
-        <div id="res-1">See Manufacturers label for unopened Shelf Life</div>
+        <div id="res-6">See Manufacturers label for unopened Shelf Life</div>
+    </div>
+
+    <div *ngIf="notShowRes">
+        <div id="res-3">Notes:</div>
+        <ion-card id="res-4"> {{resNote}}</ion-card>
+        <div id="res-6">See Manufacturers label for unopened Shelf Life</div>
     </div>
 
 </ion-content>
@@ -87,18 +68,18 @@
 <ion-footer>
     <ion-row>
         <ion-col no-padding>
-            <button no-margin ion-button full large color="primary">
+            <button no-margin ion-button full large color="primary" (click)="navToExpirationdate()">
               <img src="assets/imgs/calendar.png" width="35" height="35"/>
             </button>
         </ion-col>
         <ion-col no-padding>
-            <button no-margin ion-button full large color="primary">
+            <button no-margin ion-button full large color="primary" (click)="navToInsulin()">
                 <img src="assets/imgs/tan.png" width="25" height="35"/>
                 <span style="color: red;margin-bottom: 1em;">*</span>
             </button>
         </ion-col>
         <ion-col no-padding>
-            <button no-margin ion-button full large color="primary">
+            <button no-margin ion-button full large color="primary" (click)="navToRecall()">
                 <img src="assets/imgs/warning.png" width="35" height="35"/>
             </button>
         </ion-col>

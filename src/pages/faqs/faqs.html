@@ -7,11 +7,19 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <div>
-        <img src="assets/imgs/mlogo.png" width="50" height="50"/>
-    </div>
     <ion-title>
-        <span id="titleText">FAQs</span>
+        <ion-grid>
+            <ion-row>
+                
+                <ion-col col-3>
+                    <img src="assets/imgs/mlogo.png" width="50" height="50"/>
+                </ion-col>
+                <ion-col col-3 style="margin-top:10px;">
+                    <span>FAQs</span>
+                </ion-col>
+                <ion-col col-2></ion-col>
+            </ion-row>
+        </ion-grid>
     </ion-title>
   </ion-navbar>
 
@@ -19,6 +27,39 @@
 
 
 <ion-content padding>
+
+    <ion-list class="accordion-list">
+        <!-- First Level -->
+        <ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
+            <!-- Toggle Button -->
+            <button ion-item text-wrap (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
+                <ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
+                <ion-icon item-left  name="arrow-down" *ngIf="item.open"></ion-icon>
+                {{ item.name }}
+            </button>
+        
+            <ion-list *ngIf="item.children && item.open" no-lines>
+            <!-- Second Level -->
+            <ion-list-header *ngFor="let child of item.children; let j = index" no-padding>
+                <!-- Toggle Button -->
+                <button ion-item (click)="toggleItem(i, j)" *ngIf="child.children" class="child" detail-none>
+                <ion-icon item-left name="add" *ngIf="!child.open"></ion-icon>
+                <ion-icon item-left name="close" *ngIf="child.open"></ion-icon>
+                {{ child.name }}
+                </button>
+        
+                <!-- Direct Add Button as Fallback -->
+                <ion-item *ngIf="!child.children" ion-item detail-none class="child-item" text-wrap>
+                <h2 text-lowercase>{{ child.name }}</h2>
+                <br/>
+                
+                </ion-item>
+        
+            </ion-list-header>
+            </ion-list>
+            
+        </ion-list-header>
+    </ion-list>
 
 </ion-content>
 

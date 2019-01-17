@@ -18,7 +18,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 export class TermsofservicePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private iab:InAppBrowser) {
-    const browser = this.iab.create('https://www.medexpiration.com/termsofuse.html')
   }
 
   ionViewDidLoad() {
