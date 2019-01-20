@@ -19,6 +19,8 @@ import { IonicSelectableComponent } from 'ionic-selectable';
 
 import { CompleterService, CompleterData } from 'ng2-completer';
 
+import { Keyboard } from 'ionic-angular';
+
 /**
  * Generated class for the ExpirationdatePage page.
  *
@@ -59,24 +61,25 @@ export class ExpirationdatePage {
     meddate: ""
   }
   
-  brands: String[] = [];
+  public brands: string[] = [];
+  public types: string[] = [];
 
-  types: String[] = [];
+  public inputBrand: string = '';
+  public inputType: string = '';
 
-  typeplaceholder : string;
-  brandplaceholder : string;
+  public sugBrands : string[] = []
+  public sugTypes : string[] = []
 
-  protected dataService: CompleterData;
-
-  protected captains = ['James T. Kirk', 'Benjamin Sisko', 'Jean-Luc Picard', 'Spock', 'Jonathan Archer', 'Hikaru Sulu', 'Christopher Pike', 'Rachel Garrett' ];
+  private list: string[] = [];
+  public input: string = '';
+  public countries: string[] = [];
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
               public toastCtrl: ToastController,private db: AngularFireDatabase,public storage: Storage,
-              public alertCtrl: AlertController,private completerService: CompleterService) 
+              public alertCtrl: AlertController,private keyboard: Keyboard) 
   {
       this.medTypes = db.list("medtype").valueChanges()
 
-      this.typeplaceholder = "Type"
-      this.brandplaceholder = "Brand / Generic"
 
       db.list("medtype").valueChanges()
         .subscribe((snapshot)=>{
@@ -86,14 +89,14 @@ export class ExpirationdatePage {
               mObject.medname
             )
           })
-          this.dataService = completerService.local(this.types, 'name', 'name')
+          
         })
 
       db.list("medications").valueChanges()
         .subscribe((snapshot)=>{
           snapshot.forEach(element => {
              const mObject = <any>element
-             this.brands.push(
+             this.list.push(
                mObject.medBrand
              )
           })
@@ -101,8 +104,6 @@ export class ExpirationdatePage {
         })
 
       this.medications = db.list("medications").valueChanges()
-
-      this.dataService = completerService.local(this.types, 'name', 'name');
   }
 
   ionViewDidLoad() {
@@ -144,8 +145,8 @@ export class ExpirationdatePage {
       let f_medtype = this.expdate.medtype
       let f_meddate = this.expdate.meddate
       let f_medbrand = this.expdate.medbrand
-      console.log("f_medtype",f_medtype["name"])
-      this.db.list("/medications",ref=>ref.orderByChild("medType").equalTo(f_medtype["name"]))
+      console.log("f_medtype",f_medtype)
+      this.db.list("/medications",ref=>ref.orderByChild("medType").equalTo(f_medtype))
           .valueChanges()
           .subscribe(data=>{
               
@@ -155,7 +156,7 @@ export class ExpirationdatePage {
                 let d = data[i];
                 console.log(typeof d["medType"], typeof String(f_medtype) )
                 console.log(d["medType"] == String(f_medtype) )
-                if(d["medBrand"] == f_medbrand["name"]) {
+                if(d["medBrand"] == f_medbrand) {
                   app.extraDays = parseInt(d["medDate"])
 
                   if(app.extraDays < 0){
@@ -186,12 +187,36 @@ export class ExpirationdatePage {
   navToContact(){
      this.navCtrl.push(ContactPage)
   }
-    
-  portChange(event: {
-    component: IonicSelectableComponent,
-    value: any 
-  }) {
-    console.log('port:', event.value);
+
+  removeFocus() {
+    this.keyboard.close();
+  }
+
+  addType(item: string) {
+    this.inputType = item;
+    this.expdate.medtype = this.inputType
+    this.sugTypes = [];
+  }
+
+  searchType() {
+    if (!this.inputType.trim().length || !this.keyboard.isOpen()) {
+      this.sugTypes = [];
+      return;
+    }
+    this.sugTypes = this.types.filter(item => item.toUpperCase().startsWith(this.inputType.toUpperCase()));
+  }
+
+  add(item: string) {
+    this.input = item;
+    this.expdate.medbrand = this.input
+    this.countries = [];
+  }
+  search() {
+    if (!this.input.trim().length || !this.keyboard.isOpen()) {
+      this.countries = [];
+      return;
+    }
+    this.countries = this.list.filter(item => item.toUpperCase().startsWith(this.input.toUpperCase()));
   }
 
 }

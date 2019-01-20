@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, LoadingController, ToastController } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
+import { ChangeCardPage } from '../change-card/change-card';
 import { Stripe } from "@ionic-native/stripe"
 import * as firebase from 'firebase/app';
 //import { Headers,Http } from '@angular/http';
@@ -14,7 +15,6 @@ import { Storage } from "@ionic/storage"
 
 /**
  * Generated class for the SubscriptionPage page.
- *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
@@ -36,25 +36,35 @@ export class SubscriptionPage {
   subscribed: boolean
   subscribed_date : string
 
+  card_brand: string;
+  card_last4: string;
+  card_exp_month: string;
+  card_exp_year: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,private stripe: Stripe,
               public alertCtrl: AlertController, public loadingCtrl: LoadingController,
               public http: HttpClient, public db: AngularFireDatabase,private storage: Storage,
-              public toastCtrl : ToastController) {
+              public toastCtrl : ToastController,public modalCtrl: ModalController) {
                 var app = this
                 this.storage.get("currentEmail").then((val)=>{
                   this.email = val
-                  this.subscribed = val.subscribed
-                  this.subscribed_date = val.subscribed_date
+                  
+                  const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(this.email))
+                  .snapshotChanges()
+                  .subscribe(item => {
+                    item.forEach(element=>{
+                      var y = element.payload.toJSON();
+                      y["key"] = element.key
+                      this.subscribed = y["subscribed"]
 
-                  this.db.list("/subscription",ref=> ref.orderByChild("email").equalTo(this.email))
-                    .valueChanges()
-                    .subscribe(data=>{
-                        console.log("data[0]",data)
-                        app.subscribe.cardno = data[0]["cardno"]
-                        app.subscribe.cardyear = data[0]["cardyear"]
-                        app.subscribe.cardmonth = data[0]["cardmonth"]
-                        app.subscribe.cardcvv = data[0]["cardcvv"]
+                      this.card_brand = y["card_brand"]
+                      this.card_last4 = y["card_last4"]
+                      this.card_exp_month = y["card_exp_month"]
+                      this.card_exp_year = y["card_exp_year"]
+
+                      console.log("y",y["subscribed"])
                     })
+                  });
 
                 })
   }
@@ -75,32 +85,9 @@ export class SubscriptionPage {
     this.navCtrl.push(InsulinguidePage)
   }
 
-  updateCreditCard(){
-
-    let cardno = this.subscribe.cardno
-    let cardcvv = this.subscribe.cardcvv
-    let cardmonth = this.subscribe.cardmonth
-    let cardyear = this.subscribe.cardyear
-
-    this.db.list("/subscription",ref=> ref.orderByChild("email").equalTo(this.email))
-    .snapshotChanges()
-    .map(changes=>{
-      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    })
-    .subscribe(snapshots => {
-      snapshots.forEach(snapshot => {
-
-        this.db.list("subscription").update(snapshot.key,{
-          cardnumber : cardno,
-          cardcvv : cardcvv,
-          cardmonth : cardmonth,
-          cardyear : cardyear,
-        })
-
-      });
-    });
-
-
+  changeCreditCard(){
+    let changeCardModal = this.modalCtrl.create(ChangeCardPage, { userId: 8675309 });
+    changeCardModal.present();
   }
 
   subscribeUser(){
@@ -124,36 +111,6 @@ export class SubscriptionPage {
         
           this.email = val
           // if user's subscription info is not already provided, Store the details
-          if( this.db.list("/subscription",ref=> ref.orderByChild("email").equalTo(this.email)) == null ){
-            firebase.database().ref('subscription').push({
-              cardnumber : cardno,
-              cardcvv : cardcvv,
-              cardmonth : cardmonth,
-              cardyear : cardyear,
-              email : this.email
-            });
-          }
-          else{
-            // Else if user's subscription info is already provided, Update the details
-            this.db.list("/subscription",ref=> ref.orderByChild("email").equalTo(this.email))
-                .snapshotChanges()
-                .map(changes=>{
-                  return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-                })
-                .subscribe(snapshots => {
-                  snapshots.forEach(snapshot => {
-                  console.log('Snapshot Key: ', snapshot.key);
-
-                    this.db.list("subscription").update(snapshot.key,{
-                      cardnumber : cardno,
-                      cardcvv : cardcvv,
-                      cardmonth : cardmonth,
-                      cardyear : cardyear,
-                    })
-
-                  });
-                });
-          }
         
       })
 
@@ -171,8 +128,8 @@ export class SubscriptionPage {
         cvc: cardcvv
       })
       .then(token=>{
-        console.log(token)
-        console.log("token.id",token.id)
+        console.log("Token")
+        console.log(token.card)
   
         const body = JSON.stringify({stripetoken: token.id});
         const httpOptions = {
@@ -181,12 +138,11 @@ export class SubscriptionPage {
   
         this.http.post("https://medexp-payment.herokuapp.com/processpay",body,httpOptions)
         .subscribe(res=>{
-            console.log("Payment-Resp-2",res)
-            console.log("Payment-Success",res["success"])
+          
             loading.dismiss()
             if(res["success"])
             {
-              //console.log("email-this",this.email)
+              
               this.http.post("https://medexp.000webhostapp.com/mail.php",
                 JSON.stringify({email : this.email}),httpOptions
               )
@@ -205,6 +161,12 @@ export class SubscriptionPage {
                     var dateTime = date+' '+time;
                     this.db.list("profiles").update(snapshot.key,{
                         subscribed: true,
+                        card_last4: token.card.last4,
+                        card_exp_month: token.card.exp_month,
+                        card_exp_year: token.card.exp_year,
+                        card_id: token.card["id"],
+                        card_brand: token.card.brand,
+                        token_id: token.id,
                         subscribed_date: dateTime
                     })
                     loading.dismiss();
@@ -232,6 +194,7 @@ export class SubscriptionPage {
         })
       })
       .catch(error=>{
+        console.log(error)
         this.alertCtrl.create({
           title:"Error",
           subTitle:"Error Completing transaction...Please try again",

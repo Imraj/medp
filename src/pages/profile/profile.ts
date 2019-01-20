@@ -203,32 +203,55 @@ export class ProfilePage {
   subscribeToNewsletter(){
     if(this.newsletter){
 
-      this.storage.get("user").then((user)=>{
-        this.subEmail = user.email
-        this.subFullname = user.fullname
+      this.storage.get("currentEmail").then((val)=>{
+        this.subEmail = val
 
-        this.db.list("/newsletter").push({"email":this.subEmail,"fullname":this.subFullname})
+        const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(this.subEmail))
+        .snapshotChanges()
+        .subscribe(snapshots => {
+          snapshots.forEach(snapshot => {
+            console.log('Snapshot Key: ', snapshot.key);
+            this.db.list("profiles").update(snapshot.key,{
+                newsletter: true,
+            })
+
+            let toast = this.toastCtrl.create({
+              message:"You've been subscribed from our newsletter",
+              duration: 5000
+            })
+            toast.present()
+            
+          });
+        });
+
+      })
+    }
+    else
+    {
+
+      this.storage.get("currentEmail").then((val)=>{
+        this.subEmail = val
+
+        const profile = this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(this.subEmail))
+        .snapshotChanges()
+        .subscribe(snapshots => {
+          snapshots.forEach(snapshot => {
+            
+            this.db.list("profiles").update(snapshot.key,{
+                newsletter: false,
+            })
+
+            let toast = this.toastCtrl.create({
+              message:"You've been unsubscribed from our newsletter",
+              duration: 5000
+            })
+            toast.present()
+            
+          });
+        });
+
       })
 
-      let toast = this.toastCtrl.create({
-        message:"You've been succesfully subscribed to our newsletter",
-        duration: 5000
-      })
-      toast.present()
-    }else{
-
-      this.storage.get("user").then((user)=>{
-        this.subEmail = user.email
-        this.subFullname = user.fullname
-
-        this.db.list("/newsletter").push({"email":this.subEmail,"fullname":this.subFullname})
-      })
-
-      let toast = this.toastCtrl.create({
-        message:"You've been unsubscribed from our newsletter",
-        duration: 5000
-      })
-      toast.present()
     }
   }
 

@@ -12,6 +12,10 @@ import { AngularFireDatabase } from 'angularfire2/database';
 
 import { CompleterService, CompleterData } from 'ng2-completer';
 
+import { Keyboard } from 'ionic-angular';
+
+
+
 /**
  * Generated class for the InsulinguidePage page
  * See https://ionicframework.com/docs/components/#navigation for more info on
@@ -49,25 +53,23 @@ export class InsulinguidePage {
     date: ""
   }
 
-  brands: String[] = [];
-  brand: Brand;
+  public brands: string[] = [];
 
-  brandplaceholder : string;
-
+  private list: string[] = [];
+  public input: string = '';
+  public countries: string[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
               public db: AngularFireDatabase,public storage: Storage, public alertCtrl: AlertController,
-              private completerService: CompleterService) 
+              private completerService: CompleterService,private keyboard: Keyboard) 
   {
     var app = this
-
-    this.brandplaceholder = "Brand / Generic"
 
     db.list("insulinguides").valueChanges()
     .subscribe((snapshot)=>{
       snapshot.forEach(element => {
          const mObject = <any>element
-         this.brands.push( mObject.brand )
+         this.list.push( mObject.brand )
       })
     })
 
@@ -122,14 +124,11 @@ export class InsulinguidePage {
       alert.present()
     }
     else{
-      loader.dismiss()
     
       let f_brand = this.ins.brand
       let f_date = this.ins.date
 
-      console.log("this.insulin",this.ins)
-
-      this.db.list("/insulinguides",ref=>ref.orderByChild("brand").equalTo(f_brand["name"]))
+      this.db.list("/insulinguides",ref=>ref.orderByChild("brand").equalTo(f_brand))
           .valueChanges()
           .subscribe(data=>{
             
@@ -137,7 +136,6 @@ export class InsulinguidePage {
               
               for(let i=0;i<data.length;i++){
                 let d = data[i];
-                //if(d["type"] == f_brand["name"]){
                 console.log("d-res",d)
                 app.extraDays = parseInt(d["date"])
                 
@@ -155,7 +153,7 @@ export class InsulinguidePage {
                   console.log("d[note]",d["note"])
                   app.showRes = true
                 }
-                //}
+                
                 
               } 
           })
@@ -164,11 +162,23 @@ export class InsulinguidePage {
     
   }
 
-  portChange(event: {
-    component: IonicSelectableComponent,
-    value: any 
-  }) {
-    console.log('port:', event.value);
+  add(item: string) {
+    this.input = item;
+    this.countries = [];
+    this.ins.brand = this.input
+  }
+
+  removeFocus() {
+    this.keyboard.close();
+  }
+
+  search() {
+    if (!this.input.trim().length || !this.keyboard.isOpen()) {
+      this.countries = [];
+      return;
+    }
+    
+    this.countries = this.list.filter(item => item.toUpperCase().startsWith(this.input.toUpperCase()));
   }
 
 }

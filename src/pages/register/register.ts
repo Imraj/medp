@@ -77,7 +77,15 @@ export class RegisterPage {
           country:"",
           subscribed:false,
           subscribed_date:"",
-          fullname:fullname
+          fullname:fullname,
+          newsletter: false,
+          
+          card_last4: "",
+          card_exp_month: "",
+          card_exp_year: "",
+          card_id: "",
+          card_brand: "",
+          token_id: "",
       });
 
       return this.afAuth.auth.createUserWithEmailAndPassword(email,pwd)

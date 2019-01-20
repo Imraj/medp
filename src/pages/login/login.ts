@@ -87,13 +87,9 @@ export class LoginPage {
             app.storage.set("currentEmail",app.currentEmail)
             app.navCtrl.setRoot(HomePage)  
 
-            console.log("app.currentEmail",app.currentEmail)
-
             const profile = app.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(app.currentEmail)).valueChanges()
             profile.subscribe(data => {
-              console.log("Data")
-              console.log(data)
-              console.log( data[0] )
+             
             
               app.storage.set( "age", data[0]["age"] )
               app.storage.set( "email",data[0]["email"] )

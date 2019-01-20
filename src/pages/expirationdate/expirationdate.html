@@ -32,7 +32,7 @@
 
     <ion-list no-lines>
 
-        <ion-item>
+        <!-- <ion-item>
             <ng2-completer class="completer" [(ngModel)]="expdate.medtype" [datasource]="types" [minSearchLength]="1"></ng2-completer>
             <span class="tooltip-toggle" data-tooltip=" Company or Medical name of medication.">
                 <img src="assets/icons/help.png" width="15" height="15"/>
@@ -45,7 +45,40 @@
             <span class="tooltip-toggle" data-tooltip=" Company or Medical name of medication.">
                 <img src="assets/icons/help.png" width="15" height="15"/>
             </span>
-        </ion-item>
+        </ion-item> -->
+
+        <div class="autocomplete">
+            <ion-item>
+              <ion-label floating>Type of Medication</ion-label>
+              <ion-input  type="text" 
+                          [(ngModel)]="inputType"
+                          (ionChange)="searchType()"
+                          (ionBlur)="removeFocus()"
+                          debounce=500></ion-input>
+            </ion-item>
+            <ion-list>
+              <ion-item *ngFor="let type of sugTypes" (click)="addType(type)">
+                {{type}}
+              </ion-item>
+            </ion-list>
+        </div>
+
+        <div class="autocomplete">
+            <ion-item>
+              <ion-label floating>Brand or Generic Name of Medication</ion-label>
+              <ion-input  type="text" 
+                          [(ngModel)]="input"
+                          (ionChange)="search()"
+                          (ionBlur)="removeFocus()"
+                          debounce=500></ion-input>
+            </ion-item>
+            <ion-list>
+              <ion-item *ngFor="let country of countries" (click)="add(country)">
+                {{country}}
+              </ion-item>
+            </ion-list>
+        </div>
+        <br/><br/>
 
         <ion-item>
             <ion-label>Date Opened</ion-label>

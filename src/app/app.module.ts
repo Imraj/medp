@@ -51,6 +51,8 @@ import { TooltipsModule } from 'ionic-tooltips';
 import { FormsModule } from "@angular/forms";
 import { Ng2CompleterModule } from "ng2-completer";
 
+import { ChangeCardPage } from '../pages/change-card/change-card';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -68,7 +70,8 @@ import { Ng2CompleterModule } from "ng2-completer";
     InsulinguidePage,
     LoginPage,
     RegisterPage,
-    ForgotpwdPage
+    ForgotpwdPage,
+    ChangeCardPage
   ],
   imports: [
     BrowserModule,
@@ -103,7 +106,8 @@ import { Ng2CompleterModule } from "ng2-completer";
     InsulinguidePage,
     LoginPage,
     RegisterPage,
-    ForgotpwdPage
+    ForgotpwdPage,
+    ChangeCardPage
   ],
   providers: [
     StatusBar,

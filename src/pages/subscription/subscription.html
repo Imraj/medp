@@ -27,21 +27,14 @@
 <ion-content padding>
 
     <div *ngIf="subscribed">
-        You subscribed on {{ subscribed_date }} <ion-icon name='ion-create'></ion-icon>
-        <ion-item>
-            <ion-input type="hidden" placeholder="Card Number"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-input type="hidden" placeholder="Card CVV"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label>Card Expiry Month</ion-label>
-            <ion-input type="hidden" type="number" placeholder="Month"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label>Card Expiry Year</ion-label>
-            <ion-input type="hidden" type="number"placeholder="20XX"></ion-input>
-        </ion-item>
+        <!-- You subscribed on {{ subscribed_date }} -->
+        <div>
+            This Account is billed to {{ card_brand }} Card ending in {{ card_last4 }} and expires on
+            {{card_exp_month}}/{{card_exp_year}}.
+        </div>
+        
+        <button ion-button color="primary" outline (click)="changeCreditCard()">Change Card</button>
+    
     </div>
 
     <ion-list no-lines *ngIf="!subscribed">
