@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController,LoadingController } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
@@ -7,6 +7,9 @@ import { EmailComposer } from '@ionic-native/email-composer';
 
 import { HTTP } from '@ionic-native/http';
 import { Storage } from "@ionic/storage"
+
+import { HttpClient } from "@angular/common/http";
+import { HttpParams } from "@angular/common/http"
 
 /**
  * Generated class for the SharePage page.
@@ -32,7 +35,8 @@ export class SharePage {
 
   email : string
   constructor(public navCtrl: NavController, public navParams: NavParams,private emailComposer: EmailComposer,
-              private http: HTTP,private toastCtrl: ToastController,private storage: Storage) {
+              private http: HttpClient,private toastCtrl: ToastController,private storage: Storage,
+              private loadingCtrl: LoadingController) {
 
   }
 
@@ -57,33 +61,43 @@ export class SharePage {
     let email1 = this.share.email1
     let email2 = this.share.email2
     let email3 = this.share.email3
-    let body = this.share.message
+    let message = this.share.message
 
-    let email = {
-      to: email1,
-      cc: email2,
-      bcc:[email3],
-      subject:"MedExp",
-      body: body,
-    }    
-    //this.emailComposer.open(email)
+    let loader = this.loadingCtrl.create({
+      content:"Sending...",
+    });
+    loader.present();
 
     this.storage.get("currentEmail").then((val)=>{
         this.email = val
 
-        this.http.get("https://medexp.000webhostapp.com/share.php",{from:val, email1: email1,
-          email2:email2, email3:email3, subject:email.subject, message:email.body},{})
-              .then(data=>{
-                  console.log(data)
-                  const toast = this.toastCtrl.create({
-                    message:"Message Sent Successfully",
-                    duration:5000
-                  })
-                  toast.present()
+        const params = new HttpParams().set("email1",email1)
+                            .set("email2",email2)
+                            .set("message",message)
+                            .set("email3",email3)
+                            .set("from",this.email)
+
+        this.http.get("http://medexp.000webhostapp.com/share.php",{params})
+        .subscribe(
+          data => {
+            loader.dismiss()
+            const toast = this.toastCtrl.create({
+              message:"Message Sent Successfully",
+              duration:5000
+            })
+            toast.present()
+
+          },
+          error => {
+              loader.dismiss()
+              console.log(error)
+              const toast = this.toastCtrl.create({
+                message:"Error Sending Message",
+                duration:5000
               })
-              .catch(error=>{
-                  console.log(error)
-              })
+              toast.present()
+          }
+        )
 
     })
 

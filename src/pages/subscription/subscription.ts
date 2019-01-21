@@ -6,7 +6,6 @@ import { InsulinguidePage } from '../insulinguide/insulinguide';
 import { ChangeCardPage } from '../change-card/change-card';
 import { Stripe } from "@ionic-native/stripe"
 import * as firebase from 'firebase/app';
-//import { Headers,Http } from '@angular/http';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map'
