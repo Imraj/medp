@@ -82,28 +82,25 @@ export class ProfilePage {
 
         this.profile.email = val
 
-        // const profile = db.list("/profiles", ref=> ref.orderByChild("email").equalTo(this.email)).valueChanges()
-        // profile.subscribe(data => {
-        //   console.log("Data")
-        //   console.log(data)
-        //   console.log( data[0] )
+        const profile = db.list("/profiles", ref=> ref.orderByChild("email").equalTo(this.email)).valueChanges()
+        profile.subscribe(data => {
+          console.log("Data")
+          console.log(data)
+          console.log( data[0] )
         
-        //   this.profile.age = data[0]["age"]
-        //   this.profile.email = data[0]["email"]
-        //   this.profile.ethnicity = data[0]["ethnicity"]
-        //   this.profile.fullname = data[0]["fullname"]
-        //   this.profile.gender = data[0]["gender"]
-        //   this.profile.occupation = data[0]["occupation"]
-        //   this.profile.state = data[0]["state"]
-        //   this.profile.country = data[0]["country"]
-  
-        //   console.log("pf",this.profile.age,this.profile.email,this.profile.ethnicity,
-        //             this.profile.fullname,this.profile.gender,this.profile.occupation,
-        //             this.profile.state,this.profile.country)
-        // },err=>{
-        //   console.log("Err")
-        //   console.log(err)
-        // });
+          this.profile.age = data[0]["age"]
+          this.profile.email = data[0]["email"]
+          this.profile.ethnicity = data[0]["ethnicity"]
+          this.profile.fullname = data[0]["fullname"]
+          this.profile.gender = data[0]["gender"]
+          this.profile.occupation = data[0]["occupation"]
+          this.profile.state = data[0]["state"]
+          this.profile.country = data[0]["country"]
+
+        },err=>{
+          console.log("Err")
+          console.log(err)
+        });
 
     })
 
@@ -137,7 +134,8 @@ export class ProfilePage {
 
   }
 
-  updateProfile(){
+  updateProfile()
+  {
     var app = this
     let age = this.profile.age
     let gender = this.profile.gender
@@ -150,6 +148,7 @@ export class ProfilePage {
       content:"Updating...Please wait",
     });
     loading.present();
+
     this.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(this.email))
                         .snapshotChanges()
                         .map(changes=>{
@@ -157,16 +156,16 @@ export class ProfilePage {
                         })
                         .subscribe(snapshots => {
                           snapshots.forEach(snapshot => {
-                          console.log('Snapshot Key: ', snapshot.key);
-
-                          this.db.list("profiles").update(snapshot.key,{
-                              age: age,
-                              gender: gender,
-                              ethnicity: ethnicity,
-                              occupation: occupation,
-                              state: state,
-                              country: country
-                          })
+                          //console.log('Snapshot Key: ', snapshot.key);
+                            this.db.list("profiles").update(snapshot.key,{
+                                age: age,
+                                gender: gender,
+                                ethnicity: ethnicity,
+                                occupation: occupation,
+                                state: state,
+                                country: country
+                            })
+                          });
 
                           const toast = this.toastCtrl.create({
                             message:"Profile updated successfully",
@@ -176,12 +175,7 @@ export class ProfilePage {
 
                           loading.dismiss();
 
-                          });
                         });
-
-
-    
-
   }
 
   ionViewDidLoad() {
@@ -210,18 +204,17 @@ export class ProfilePage {
         .snapshotChanges()
         .subscribe(snapshots => {
           snapshots.forEach(snapshot => {
-            console.log('Snapshot Key: ', snapshot.key);
+            //console.log('Snapshot Key: ', snapshot.key);
             this.db.list("profiles").update(snapshot.key,{
                 newsletter: true,
             })
-
-            let toast = this.toastCtrl.create({
-              message:"You've been subscribed from our newsletter",
-              duration: 5000
-            })
-            toast.present()
-            
           });
+          let toast = this.toastCtrl.create({
+            message:"You've been subscribed from our newsletter",
+            duration: 5000
+          })
+          toast.present()
+
         });
 
       })
@@ -240,14 +233,14 @@ export class ProfilePage {
             this.db.list("profiles").update(snapshot.key,{
                 newsletter: false,
             })
-
-            let toast = this.toastCtrl.create({
-              message:"You've been unsubscribed from our newsletter",
-              duration: 5000
-            })
-            toast.present()
             
           });
+          let toast = this.toastCtrl.create({
+            message:"You've been unsubscribed from our newsletter",
+            duration: 5000
+          })
+          toast.present()
+          
         });
 
       })

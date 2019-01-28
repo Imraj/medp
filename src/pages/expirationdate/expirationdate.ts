@@ -92,16 +92,21 @@ export class ExpirationdatePage {
           
         })
 
-      db.list("medications").valueChanges()
-        .subscribe((snapshot)=>{
-          snapshot.forEach(element => {
-             const mObject = <any>element
-             this.list.push(
-               mObject.medBrand
-             )
-          })
+      // db.list("medications").valueChanges()
+      //   .subscribe((snapshot)=>{
+      //     snapshot.forEach(element => {
+      //        const mObject = <any>element
+
+      //        console.log("mObject")
+      //        console.log(mObject)
+      //        console.log("medtype",this.expdate.medtype)
+
+      //        this.list.push(
+      //         mObject.medBrand
+      //        )
+      //     })
           
-        })
+      // })
 
       this.medications = db.list("medications").valueChanges()
   }
@@ -217,6 +222,25 @@ export class ExpirationdatePage {
       return;
     }
     this.countries = this.list.filter(item => item.toUpperCase().startsWith(this.input.toUpperCase()));
+  }
+
+  onChange($event){
+    this.list = []
+    this.expdate.medbrand = ""
+    
+    this.db.list("medications").valueChanges()
+    .subscribe((snapshot)=>{
+      snapshot.forEach(element => {
+
+         const mObject = <any>element
+         console.log("medtype",this.expdate.medtype)
+         if(mObject.medType == $event){
+            this.list.push(mObject.medBrand)
+         }         
+      })
+      
+  })
+
   }
 
 }

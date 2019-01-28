@@ -32,19 +32,14 @@
 
     <ion-list no-lines>
 
-       
-
-        
         <ion-item>
             <ion-label floating>Type of Medication</ion-label>
-            <ion-select [(ngModel)]="expdate.medtype">
-                <ion-option *ngFor="let type of types" [value]="type">
+            <ion-select [(ngModel)]="expdate.medtype" (ionChange)="onChange($event)">
+                <ion-option *ngFor="let type of types" [value]="type" >
                     {{type}}
                 </ion-option>
             </ion-select>
         </ion-item>
-
-       
 
         <div class="autocomplete">
             <ion-item>

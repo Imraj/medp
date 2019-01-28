@@ -46,7 +46,7 @@
             <ion-item>
                 <ion-label>Select Country</ion-label>
                 <ion-select [(ngModel)]="profile.country">
-                    <ion-option *ngFor="let c of countryList" value="c">
+                    <ion-option *ngFor="let c of countryList" value="{{c}}">
                         {{ c }}
                     </ion-option>
                 </ion-select>
