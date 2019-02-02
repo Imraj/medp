@@ -109,7 +109,7 @@ export class RegisterPage {
                      })
 
             const params = new HttpParams().set("email",email)
-            this.http.get('https://medexp.000webhostapp.com/welcome.php', {params})
+            this.http.get('https://www.medexpiration.com/welcome.php', {params})
             .subscribe(data => {},error=>{});
           
         },

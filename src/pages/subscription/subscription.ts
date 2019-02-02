@@ -142,7 +142,7 @@ export class SubscriptionPage {
             if(res["success"])
             {
               
-              this.http.post("https://medexp.000webhostapp.com/mail.php",
+              this.http.post("https://www.medexpiration.com/mail.php",
                 JSON.stringify({email : this.email}),httpOptions
               )
   

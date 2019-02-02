@@ -76,8 +76,8 @@ export class SharePage {
                             .set("message",message)
                             .set("email3",email3)
                             .set("from",this.email)
-
-        this.http.get("http://medexp.000webhostapp.com/share.php",{params})
+        //http://medexp.000webhostapp.com/share.php
+        this.http.get("http://www.medexpiration.com/share.php",{params})
         .subscribe(
           data => {
             loader.dismiss()

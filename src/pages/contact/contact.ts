@@ -75,7 +75,8 @@ export class ContactPage {
       const params = new HttpParams().set("type",email.type).set("subject",email.subject)
                                      .set("message",email.message).set("from",this.email)
 
-      this.http.get('https://medexp.000webhostapp.com/contact.php', {params})
+      //https://medexp.000webhostapp.com/contact.php
+      this.http.get('https://www.medexpiration.com/contact.php', {params})
           .subscribe(data => {
 
             const toast = this.toastCtrl.create({
