@@ -45,7 +45,7 @@ export class RecallPage {
 
     const recalls = db.list("/recalls").valueChanges()
     recalls.subscribe( rec => {
-      console.log("Recall",rec)
+      //console.log("Recall",rec)
       let items = []
       for(var r in rec)
       {
@@ -58,11 +58,11 @@ export class RecallPage {
               recalldate : recall["date"]["day"] + "/" + recall["date"]["month"] + "/" + recall["date"]["year"]
           }]
         }
-        console.log("this-array",items)
+        //console.log("this-array",items)
         items.push(recallF1)
-        console.log("recallF1",recallF1)
+        //console.log("recallF1",recallF1)
       }
-      console.log("app.items",{"items":items})
+      //console.log("app.items",{"items":items})
       this.information = items
     })
 
@@ -77,7 +77,7 @@ export class RecallPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RecallPage');
+    //console.log('ionViewDidLoad RecallPage');
   }
 
   navToExpirationdate(){

@@ -78,15 +78,15 @@ export class ProfilePage {
     this.storage.get("currentEmail").then((val)=>{
 
         this.email = val
-        console.log("this.email",this.email)
+        //console.log("this.email",this.email)
 
         this.profile.email = val
 
         const profile = db.list("/profiles", ref=> ref.orderByChild("email").equalTo(this.email)).valueChanges()
         profile.subscribe(data => {
-          console.log("Data")
+          /*console.log("Data")
           console.log(data)
-          console.log( data[0] )
+          console.log( data[0] )*/
         
           this.profile.age = data[0]["age"]
           this.profile.email = data[0]["email"]
@@ -98,8 +98,8 @@ export class ProfilePage {
           this.profile.country = data[0]["country"]
 
         },err=>{
-          console.log("Err")
-          console.log(err)
+          /*console.log("Err")
+          console.log(err)*/
         });
 
     })
@@ -179,7 +179,7 @@ export class ProfilePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+    //console.log('ionViewDidLoad ProfilePage');
   }
 
   navToExpirationdate(){
@@ -249,8 +249,9 @@ export class ProfilePage {
   }
 
   navToChangepwd(){
-    this.storage.clear()
-    this.navCtrl.setRoot(ForgotpwdPage)
+    //this.storage.clear()
+    //this.navCtrl.setRoot(ForgotpwdPage)
+    this.navCtrl.push(ForgotpwdPage)
   }
 
 }

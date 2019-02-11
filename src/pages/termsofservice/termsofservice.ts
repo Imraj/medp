@@ -21,7 +21,7 @@ export class TermsofservicePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TermsofservicePage');
+    //console.log('ionViewDidLoad TermsofservicePage');
   }
 
 }

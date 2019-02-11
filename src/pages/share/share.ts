@@ -41,7 +41,7 @@ export class SharePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SharePage');
+    //console.log('ionViewDidLoad SharePage');
   }
 
   navToExpirationdate(){
@@ -90,7 +90,7 @@ export class SharePage {
           },
           error => {
               loader.dismiss()
-              console.log(error)
+              //console.log(error)
               const toast = this.toastCtrl.create({
                 message:"Error Sending Message",
                 duration:5000

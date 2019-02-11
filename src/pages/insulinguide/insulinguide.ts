@@ -85,7 +85,7 @@ export class InsulinguidePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InsulinguidePage');
+    //console.log('ionViewDidLoad InsulinguidePage');
   }
 
   navToExpirationdate(){
@@ -136,7 +136,7 @@ export class InsulinguidePage {
               
               for(let i=0;i<data.length;i++){
                 let d = data[i];
-                console.log("d-res",d)
+                //console.log("d-res",d)
                 app.extraDays = parseInt(d["date"])
                 
                 if(app.extraDays < 0){
@@ -147,10 +147,10 @@ export class InsulinguidePage {
                 }else{
                   let rDate = new Date(app.ins.date);
                   rDate.setDate(rDate.getDate() + app.extraDays)
-                  console.log("rDate",rDate)
+                  //console.log("rDate",rDate)
                   app.resDate = rDate
                   app.resNote = d["note"]
-                  console.log("d[note]",d["note"])
+                  //console.log("d[note]",d["note"])
                   app.showRes = true
                 }
                 

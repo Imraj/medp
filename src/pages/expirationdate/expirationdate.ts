@@ -156,11 +156,11 @@ export class ExpirationdatePage {
           .subscribe(data=>{
               
               loader.dismiss()
-              console.log("Exp-Data-web2",data,data.length)
+              //console.log("Exp-Data-web2",data,data.length)
               for(let i=0;i<data.length;i++){
                 let d = data[i];
-                console.log(typeof d["medType"], typeof String(f_medtype) )
-                console.log(d["medType"] == String(f_medtype) )
+                //console.log(typeof d["medType"], typeof String(f_medtype) )
+                //console.log(d["medType"] == String(f_medtype) )
                 if(d["medBrand"] == f_medbrand) {
                   app.extraDays = parseInt(d["medDate"])
 
@@ -168,12 +168,13 @@ export class ExpirationdatePage {
                     app.resNote = d["medNote"]
                     this.notShowRes = true
                   }else{
-                    let rDate = new Date(app.expdate.meddate)//new Date(openYear+"-"+openMonth+"-"+openDay);
+                    let rDate = new Date(app.expdate.meddate)
+                    //new Date(openYear+"-"+openMonth+"-"+openDay);
                     rDate.setDate(rDate.getDate() + app.extraDays)
                     
                     //console.log("rDate",rDate)
                     app.resDate = rDate
-                    console.log("resDate",app.resDate)
+                    //console.log("resDate",app.resDate)
                     app.resNote = d["medNote"]
                     this.showRes = true
                   }
@@ -233,7 +234,7 @@ export class ExpirationdatePage {
       snapshot.forEach(element => {
 
          const mObject = <any>element
-         console.log("medtype",this.expdate.medtype)
+         //console.log("medtype",this.expdate.medtype)
          if(mObject.medType == $event){
             this.list.push(mObject.medBrand)
          }         

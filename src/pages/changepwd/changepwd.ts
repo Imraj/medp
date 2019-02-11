@@ -7,7 +7,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from "@ionic/storage"
 
 /**
- * Generated class for the ForgotpwdPage page.
+ * Generated class for the ChangepwdPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -15,10 +15,10 @@ import { Storage } from "@ionic/storage"
 
 @IonicPage()
 @Component({
-  selector: 'page-forgotpwd',
-  templateUrl: 'forgotpwd.html',
+  selector: 'page-changepwd',
+  templateUrl: 'changepwd.html',
 })
-export class ForgotpwdPage {
+export class ChangepwdPage {
 
   forgotPwdData = {
     email : ""

@@ -12,11 +12,6 @@ import 'rxjs/add/operator/map'
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from "@ionic/storage"
 
-/**
- * Generated class for the SubscriptionPage page.
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -61,7 +56,7 @@ export class SubscriptionPage {
                       this.card_exp_month = y["card_exp_month"]
                       this.card_exp_year = y["card_exp_year"]
 
-                      console.log("y",y["subscribed"])
+                      //console.log("y",y["subscribed"])
                     })
                   });
 
@@ -69,7 +64,7 @@ export class SubscriptionPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SubscriptionPage');
+    //console.log('ionViewDidLoad SubscriptionPage');
   }
 
   navToExpirationdate(){
@@ -127,8 +122,8 @@ export class SubscriptionPage {
         cvc: cardcvv
       })
       .then(token=>{
-        console.log("Token")
-        console.log(token.card)
+        /*console.log("Token")
+        console.log(token.card)*/
   
         const body = JSON.stringify({stripetoken: token.id});
         const httpOptions = {
@@ -188,12 +183,12 @@ export class SubscriptionPage {
               alert.present()
             }
         },err=>{
-            console.log("Payment-Err",err)
+            //console.log("Payment-Err",err)
             loading.dismiss()
         })
       })
       .catch(error=>{
-        console.log(error)
+        //console.log(error)
         this.alertCtrl.create({
           title:"Error",
           subTitle:"Error Completing transaction...Please try again",
