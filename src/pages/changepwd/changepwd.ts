@@ -33,7 +33,7 @@ export class ChangepwdPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ForgotpwdPage');
+    //console.log('ionViewDidLoad ForgotpwdPage');
   }
 
   retrievePassword(){

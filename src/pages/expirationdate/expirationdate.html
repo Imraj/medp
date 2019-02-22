@@ -65,11 +65,11 @@
         </ion-item>
 
         <ion-item text-center>
-            <button id="submitBtn" ion-button primary medium (click)="calcExpirationDate()">Submit</button>
+            <button id="submitBtn" [ngClass]="expBtnCssClass" ion-button primary medium (click)="calcExpirationDate()">Submit</button>
         </ion-item>
     </ion-list>    
 
-    <div *ngIf="showRes">
+    <div *ngIf="showRes" [ngClass]="expResCssClass">
         <div id="res-1">Expires on</div>
         <div id="res-2" text-center>{{ resDate }}</div>
         <div id="res-3">Notes:</div>

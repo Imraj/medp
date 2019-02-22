@@ -33,13 +33,13 @@
             <!-- Toggle Button -->
             <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
             <ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
-            <ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
+            <ion-icon  item-left name="arrow-down" *ngIf="item.open"></ion-icon>
                 {{ item.name }}
             </button>
         
             <ion-list *ngIf="item.children && item.open" no-lines>
             <!-- Second Level -->
-            <ion-list-header *ngFor="let child of item.children; let j = index" no-padding>
+            <ion-list-header  *ngFor="let child of item.children; let j = index" no-padding>
                 <!-- Toggle Button -->
                 <button ion-item (click)="toggleItem(i, j)" *ngIf="child.children" class="child" detail-none>
                 <ion-icon item-left name="add" *ngIf="!child.open"></ion-icon>

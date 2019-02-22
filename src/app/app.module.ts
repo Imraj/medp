@@ -53,6 +53,8 @@ import { Ng2CompleterModule } from "ng2-completer";
 
 import { ChangeCardPage } from '../pages/change-card/change-card';
 
+import { AnimationService, AnimatesDirective } from 'css-animator';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -71,7 +73,8 @@ import { ChangeCardPage } from '../pages/change-card/change-card';
     LoginPage,
     RegisterPage,
     ForgotpwdPage,
-    ChangeCardPage
+    ChangeCardPage,
+    AnimatesDirective
   ],
   imports: [
     BrowserModule,
@@ -118,6 +121,7 @@ import { ChangeCardPage } from '../pages/change-card/change-card';
     InAppBrowser,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AnimationService
   ]
 })
 export class AppModule {}

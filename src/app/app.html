@@ -1,54 +1,56 @@
-<ion-menu [content]="content">
-  <ion-content id="menu">
-    <div>
-      <ion-list no-lines>
-      <button id="menuBtn" menuClose ion-item>
-          Settings
-      </button>
-      <button id="menuBtn" menuClose ion-item (click)="navToHome()">
-          <img src="assets/icons/home.png" width="20" height="20" />
-          <span id="menuTxt">App Home</span>
-      </button>
-      <button id="menuBtn" menuClose ion-item (click)="navToProfile()">
-          <img src="assets/icons/settings.png" width="20" height="20" />
-          <span id="menuTxt">Profile</span>
-      </button>
-      <button id="menuBtn" menuClose ion-item (click)="navToAbout()">
-          <img src="assets/icons/blue_logo.png" width="20" height="20" />
-          <span id="menuTxt">About</span>
-      </button>
-      <button id="menuBtn" menuClose ion-item (click)="navToShare()">
-        <img src="assets/icons/share.png" width="20" height="20" />
-        <span id="menuTxt">Share</span>
-      </button>
-      <button id="menuBtn" menuClose ion-item (click)="navToFaqs()">
-        <img src="assets/icons/question.png" width="20" height="20" />
-        <span id="menuTxt">FAQs</span>
-      </button>
-      <button id="menuBtn" menuClose ion-item (click)="navToSub()">
-        <img src="assets/icons/credit-card.png" width="20" height="20" />
-        <span id="menuTxt">Subscription</span>
-      </button>
-      <button id="menuBtn" menuClose ion-item (click)="navToContact()">
-        <img src="assets/icons/support.png" width="20" height="20" />
-        <span id="menuTxt">Contact Us</span>
-      </button>
-      <button id="menuBtn" menuClose ion-item (click)="navToPrivacy()">
-        <img src="assets/icons/decision.png" width="20" height="20" />
-        <span id="menuTxt">Privacy Policy</span>
-      </button>
-      <button id="menuBtn" menuClose ion-item (click)="navToTOS()">
-        <img src="assets/icons/book.png" width="20" height="20" />
-        <span id="menuTxt">Terms of Service</span>
-      </button>
-      <button id="menuBtn" menuClose ion-item (click)="logout()">
-         <img src="assets/icons/logout.png" width="20" height="20" />
-         <span id="menuTxt">Logout</span>
-      </button>
-      </ion-list>
-    </div>
-  </ion-content>
-</ion-menu>
+<ion-split-pane when="md">
+  <ion-menu [content]="content">
+    <ion-content id="menu">
+      <div>
+        <ion-list no-lines>
+        <button id="menuBtn" menuClose ion-item>
+            Settings
+        </button>
+        <button id="menuBtn" menuClose ion-item (click)="navToHome()">
+            <img src="assets/icons/home.png" width="20" height="20" />
+            <span id="menuTxt">App Home</span>
+        </button>
+        <button id="menuBtn" menuClose ion-item (click)="navToProfile()">
+            <img src="assets/icons/settings.png" width="20" height="20" />
+            <span id="menuTxt">Profile</span>
+        </button>
+        <button id="menuBtn" menuClose ion-item (click)="navToAbout()">
+            <img src="assets/icons/blue_logo.png" width="20" height="20" />
+            <span id="menuTxt">About</span>
+        </button>
+        <button id="menuBtn" menuClose ion-item (click)="navToShare()">
+          <img src="assets/icons/share.png" width="20" height="20" />
+          <span id="menuTxt">Share</span>
+        </button>
+        <button id="menuBtn" menuClose ion-item (click)="navToFaqs()">
+          <img src="assets/icons/question.png" width="20" height="20" />
+          <span id="menuTxt">FAQs</span>
+        </button>
+        <button id="menuBtn" menuClose ion-item (click)="navToSub()">
+          <img src="assets/icons/credit-card.png" width="20" height="20" />
+          <span id="menuTxt">Subscription</span>
+        </button>
+        <button id="menuBtn" menuClose ion-item (click)="navToContact()">
+          <img src="assets/icons/support.png" width="20" height="20" />
+          <span id="menuTxt">Contact Us</span>
+        </button>
+        <button id="menuBtn" menuClose ion-item (click)="navToPrivacy()">
+          <img src="assets/icons/decision.png" width="20" height="20" />
+          <span id="menuTxt">Privacy Policy</span>
+        </button>
+        <button id="menuBtn" menuClose ion-item (click)="navToTOS()">
+          <img src="assets/icons/book.png" width="20" height="20" />
+          <span id="menuTxt">Terms of Service</span>
+        </button>
+        <button id="menuBtn" menuClose ion-item (click)="logout()">
+          <img src="assets/icons/logout.png" width="20" height="20" />
+          <span id="menuTxt">Logout</span>
+        </button>
+        </ion-list>
+      </div>
+    </ion-content>
+  </ion-menu>
 
+  <ion-nav [root]="rootPage" main #content swipeBackEnabled="false"></ion-nav>
+</ion-split-pane>
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

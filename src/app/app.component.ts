@@ -98,7 +98,7 @@ export class MyApp {
   }
 
   navToHome(){
-    
+    this.nav.push(HomePage)
   }
   navToProfile(){
     this.nav.push(ProfilePage)

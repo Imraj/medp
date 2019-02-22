@@ -38,7 +38,7 @@ export class ContactPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ContactPage');
+    //console.log('ionViewDidLoad ContactPage');
   }
 
   navToExpirationdate(){
@@ -61,7 +61,7 @@ export class ContactPage {
       type: this.contact.type
     }    
     
-    console.log("let-email",email)
+    //console.log("let-email",email)
 
     let loader = this.loadingCtrl.create({
       content:"Sending...",

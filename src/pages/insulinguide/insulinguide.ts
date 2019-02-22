@@ -59,6 +59,9 @@ export class InsulinguidePage {
   public input: string = '';
   public countries: string[] = [];
 
+  insBtnCssClass : string;
+  insResCssClass : string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
               public db: AngularFireDatabase,public storage: Storage, public alertCtrl: AlertController,
               private completerService: CompleterService,private keyboard: Keyboard) 
@@ -101,13 +104,7 @@ export class InsulinguidePage {
   }
 
   calcInsulin(){
-
-    var app = this
-    let loader = this.loadingCtrl.create({
-      content:"Processing...",
-      duration: 5000
-    });
-    loader.present();
+    this.insBtnCssClass = "animated rubberBand"
 
     let f_brand = this.ins.brand
     let f_date = this.ins.date
@@ -121,10 +118,20 @@ export class InsulinguidePage {
         subTitle: "All fields are required",
         buttons: ['Ok']
       })
-      alert.present()
+
+       setTimeout(function(){
+        alert.present()
+      },500)
     }
     else{
     
+      var app = this
+      let loader = this.loadingCtrl.create({
+        content:"Processing...",
+        duration: 5000
+      });
+      loader.present();
+
       let f_brand = this.ins.brand
       let f_date = this.ins.date
 
@@ -152,6 +159,7 @@ export class InsulinguidePage {
                   app.resNote = d["note"]
                   //console.log("d[note]",d["note"])
                   app.showRes = true
+                  this.insBtnCssClass = "animated tada"
                 }
                 
                 

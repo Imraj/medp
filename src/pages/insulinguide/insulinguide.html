@@ -71,12 +71,12 @@
         </ion-item>
 
         <ion-item id="insulin-page-list" text-center>
-            <button id="submitBtn" ion-button primary (click)="calcInsulin()">Submit</button>
+            <button id="submitBtn" [ngClass]="insBtnCssClass" ion-button primary (click)="calcInsulin()">Submit</button>
         </ion-item>
 
     </ion-list>
 
-    <div *ngIf="showRes">
+    <div *ngIf="showRes" [ngClass]="insResCssClass">
         <div id="res-1">Expires on</div>
         <div id="res-2" text-center>{{ resDate }}</div>
         <div id="res-3">Notes:</div>

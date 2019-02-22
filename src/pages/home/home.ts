@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,Platform } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
@@ -12,8 +12,11 @@ import { SubscriptionPage } from "../subscription/subscription"
 
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
-
+  
+  isTabletOrIpad : boolean;
+  
+  constructor(public navCtrl: NavController,public platform: Platform) {
+    this.isTabletOrIpad = this.platform.is('tablet') || this.platform.is('ipad');
   }
 
   navToExpirationdate(){

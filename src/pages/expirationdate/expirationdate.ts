@@ -73,6 +73,9 @@ export class ExpirationdatePage {
   private list: string[] = [];
   public input: string = '';
   public countries: string[] = [];
+
+  expBtnCssClass : string;
+  expResCssClass : string;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
               public toastCtrl: ToastController,private db: AngularFireDatabase,public storage: Storage,
@@ -129,6 +132,8 @@ export class ExpirationdatePage {
   
 
   calcExpirationDate(){
+    this.expBtnCssClass = "animated rubberBand"
+
     if(this.expdate.medtype == "" || this.expdate.meddate == "" || this.expdate.medbrand == ""
     || this.expdate.medtype == null || this.expdate.meddate == null || this.expdate.medbrand == null)
     {
@@ -137,7 +142,10 @@ export class ExpirationdatePage {
         subTitle: "All fields are required",
         buttons: ['Ok']
       })
-      alert.present()
+      setTimeout(function(){
+        alert.present()
+      },500)
+     
     }
     else{
       var app = this
@@ -177,6 +185,7 @@ export class ExpirationdatePage {
                     //console.log("resDate",app.resDate)
                     app.resNote = d["medNote"]
                     this.showRes = true
+                    this.expResCssClass = "animated tada"
                   }
 
                   
