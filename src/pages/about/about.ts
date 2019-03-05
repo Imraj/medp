@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
+import { SubscriptionPage } from "../subscription/subscription"
 
 /**
  * Generated class for the AboutPage page.
@@ -35,6 +36,10 @@ export class AboutPage {
 
   navToInsulin(){
     this.navCtrl.push(InsulinguidePage)
+  }
+
+  navToSub(){
+    this.navCtrl.push(SubscriptionPage)
   }
 
 }

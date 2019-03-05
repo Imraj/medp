@@ -52,7 +52,7 @@
                 <span><b>Manufacturer:</b></span><h2 text-lowercase>{{ child.name }}</h2>
                 <br/>
 
-                <span><b>Recall date:</b></span><h3 text-lowercase>{{ child.recalldate }}</h3>
+                <span><b>Recall date:</b></span><h3> {{ months[child.rmonth] }} {{ child.rday }}, {{ child.ryear }}</h3>
                 <br/>
 
                 <span><b>Reason for recall:</b></span>

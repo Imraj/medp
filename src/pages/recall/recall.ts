@@ -27,6 +27,8 @@ import { SubscriptionPage } from '../subscription/subscription';
 export class RecallPage {
   information : any[];
   currentEmail : string
+
+  months = ["","Jan","Feb","March","April","May","June","July","Aug","Sept","Oct","Nov","Dec"]
   
   constructor(public navCtrl: NavController, private http: Http,public navParams: NavParams,
               public db: AngularFireDatabase,public storage: Storage) 
@@ -55,6 +57,9 @@ export class RecallPage {
           "children":[{
               name: recall["manufacturer"],
               information: recall["reason"],
+              rday: recall["date"]["day"],
+              rmonth: recall["date"]["month"],
+              ryear: recall["date"]["year"],
               recalldate : recall["date"]["day"] + "/" + recall["date"]["month"] + "/" + recall["date"]["year"]
           }]
         }

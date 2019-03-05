@@ -29,7 +29,7 @@
           <ion-col col-12 col-md-12 col-sm-12 >
             <ion-card (click)="navToExpirationdate()">
                 <ion-card-content text-center>
-                    <img id="home-icon-1" src="assets/icons/h-calendar.png" />
+                    <img id="home-icon-1" src="assets/icons/h-calendar.png"  />
                     <span id="size-2" class="home-text-1">
                         Expiration Date Calculator
                         <br/>
@@ -41,10 +41,10 @@
 
         <ion-row id="home-row2">
           <ion-col col-12 col-md-12 col-sm-12 >
-            <ion-card (click)="navToInsulin()">
+            <ion-card>
                 <ion-card-content text-center>
-                    <img src="assets/icons/h-tan.png" id="home-icon-2"  />
-                    <span id="size-2" class="home-text-2">
+                    <img src="assets/icons/h-tan.png" id="home-icon-2" (click)="navToInsulin()"  />
+                    <span id="size-2" class="home-text-2" (click)="navToInsulin()">
                         Insulin Expiration Guide<br/>
                         <span id="size-3" (click)="navToSub()"><i>Via Annual Subscription</i></span>
                     </span>
@@ -56,10 +56,10 @@
 
         <ion-row id="home-row3">
           <ion-col col-12 col-md-12 col-sm-12>
-            <ion-card (click)="navToRecall()">
+            <ion-card>
                 <ion-card-content text-center>
                     <img (click)="navToRecall()" id="home-icon-3" src="assets/icons/h-warning.png"/>
-                    <span id="size-2" class="home-text-3">
+                    <span id="size-2" class="home-text-3" (click)="navToSub()">
                         Medication Recalls<br/>
                         <span id="size-3" (click)="navToSub()"><i>Via Annual Subscription</i></span>
                     </span>
