@@ -44,8 +44,8 @@
             <ion-card>
                 <ion-card-content text-center>
                     <img src="assets/icons/h-tan.png" id="home-icon-2" (click)="navToInsulin()"  />
-                    <span id="size-2" class="home-text-2" (click)="navToInsulin()">
-                        Insulin Expiration Guide<br/>
+                    <span id="size-2" class="home-text-2">
+                        <span (click)="navToInsulin()">Insulin Expiration Guide</span><br/>
                         <span id="size-3" (click)="navToSub()"><i>Via Annual Subscription</i></span>
                     </span>
                 </ion-card-content>
@@ -59,8 +59,8 @@
             <ion-card>
                 <ion-card-content text-center>
                     <img (click)="navToRecall()" id="home-icon-3" src="assets/icons/h-warning.png"/>
-                    <span id="size-2" class="home-text-3" (click)="navToSub()">
-                        Medication Recalls<br/>
+                    <span id="size-2" class="home-text-3" >
+                        <span (click)="navToRecall()">Medication Recalls</span><br/>
                         <span id="size-3" (click)="navToSub()"><i>Via Annual Subscription</i></span>
                     </span>
                 </ion-card-content>

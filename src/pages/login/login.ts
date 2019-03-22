@@ -89,8 +89,6 @@ export class LoginPage {
 
             const profile = app.db.list("/profiles", ref=> ref.orderByChild("email").equalTo(app.currentEmail)).valueChanges()
             profile.subscribe(data => {
-             
-            
               app.storage.set( "age", data[0]["age"] )
               app.storage.set( "email",data[0]["email"] )
               app.storage.set( "ethnicity",data[0]["ethnicity"])

@@ -74,7 +74,7 @@ page-home {
         }
 
         ion-row{
-            height: 33.33%;
+            height: 100%;
         }
 
         ion-card{
@@ -133,7 +133,7 @@ page-home {
         }
 
         ion-row{
-            height: 33.33%;
+            height: 100%;
         }
 
         ion-card{
@@ -286,7 +286,7 @@ page-home {
         }
 
         ion-row{
-            height: 33.33%;;
+            height: 100%;
         }
 
         ion-card{
@@ -340,9 +340,7 @@ page-home {
         ion-grid{
             height: 100%;
         }
-
-       
-
+        
         ion-card{
             height: 100%;
         }
@@ -351,7 +349,7 @@ page-home {
             width:15%;
             height: 15%;
             float:left;
-            margin-top:20%;
+            margin-top:10%;
             margin-left:5%;
         }
 
@@ -360,7 +358,7 @@ page-home {
             width:15%;
             height: 15%;
             float:left;
-            margin-top:20%;
+            margin-top:10%;
             margin-left:5%;
         }
 
@@ -368,24 +366,24 @@ page-home {
             width:12%;
             height: 12%;
             float:left;
-            margin-top:20%;
+            margin-top:10%;
             
         }
 
         .home-text-1{
             float:left;
             margin-left: 5px;
-            margin-top: 22.5%;
+            margin-top: 12.5%;
         }
 
         .home-text-2{
             float:left;
-            margin-top:22.5%;
+            margin-top:12.5%;
         }
 
         .home-text-3{
             float:left;
-            margin-top:22.5%;
+            margin-top:12.5%;
         }
        
     }

@@ -27,12 +27,116 @@ page-expirationdate {
             }
         }
     }
-    #size-1{
-        font-size:22px;   
+
+    @media (min-width: 315px) and (max-width: 325px) {
+
+        #size-1{
+            font-size:22px;   
+        }
+        #size-2{
+            font-size:18px;
+        }
+        #size-3{
+            font-size:12px;
+        }
+
     }
-    #size-2{
-        font-size:18px;
+
+    @media (min-width: 326px) and (max-width: 480px) {
+
+        #size-1{
+            font-size:30px;   
+        }
+        #size-2{
+            font-size:24px;
+        }
+        #size-3{
+            font-size:18px;
+        }
+
     }
+
+    /* 
+        ##Device = Low Resolution Tablets, Mobiles (Landscape)
+        ##Screen = B/w 481px to 767px
+    */
+    @media (min-width: 481px) and (max-width: 767px) {
+
+        #size-1{
+            font-size:28px;   
+        }
+        #size-2{
+            font-size:24px;
+        }
+        #size-3{
+            font-size:30px;
+        }
+
+    }
+
+    /* 
+        ##Device = Tablets, Ipads (landscape)
+        ##Screen = B/w 768px to 1024px
+    */
+    @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+        #size-1{
+            font-size:30px;   
+        }
+        #size-2{
+            font-size:34px;
+        }
+        #size-3{
+            font-size:38px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 834px) {
+        #size-1{
+            font-size:28px;   
+        }
+        #size-2{
+            font-size:24px;
+        }
+        #size-3{
+            font-size:30px;
+        }
+    }
+
+    /* 
+        ##Device = Tablets, Ipads (portrait)
+        ##Screen = B/w 834px to 1024px
+    */
+    @media (min-width: 834px) and (max-width: 1024px) {
+
+        #size-1{
+            font-size:28px;   
+        }
+        #size-2{
+            font-size:24px;
+        }
+        #size-3{
+            font-size:30px;
+        }
+
+    }
+
+     /* 
+        ##Device = Laptops, Desktops
+        ##Screen = B/w 1025px to 1280px
+    */
+    @media (min-width: 1025px) and (max-width: 1281px) {
+        #size-1{
+            font-size:28px;   
+        }
+        #size-2{
+            font-size:24px;
+        }
+        #size-3{
+            font-size:30px;
+        }
+    }
+
+    
     #title{
         margin-top:1em;
         margin-bottom:2em;
@@ -41,9 +145,7 @@ page-expirationdate {
     #home-menu{
         margin-top:1em;
     }
-    #size-3{
-        font-size:12px;
-    }
+    
     #titleText{
         color: #a38f73;
     }

@@ -81,6 +81,9 @@ export class ExpirationdatePage {
               public toastCtrl: ToastController,private db: AngularFireDatabase,public storage: Storage,
               public alertCtrl: AlertController,private keyboard: Keyboard) 
   {
+
+      
+
       this.medTypes = db.list("medtype").valueChanges()
 
 
@@ -95,21 +98,6 @@ export class ExpirationdatePage {
           
         })
 
-      // db.list("medications").valueChanges()
-      //   .subscribe((snapshot)=>{
-      //     snapshot.forEach(element => {
-      //        const mObject = <any>element
-
-      //        console.log("mObject")
-      //        console.log(mObject)
-      //        console.log("medtype",this.expdate.medtype)
-
-      //        this.list.push(
-      //         mObject.medBrand
-      //        )
-      //     })
-          
-      // })
 
       this.medications = db.list("medications").valueChanges()
   }
