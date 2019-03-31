@@ -52,6 +52,7 @@
     "ionic2-auto-complete": "^1.6.2-alpha",
     "ionicons": "3.0.0",
     "ng2-completer": "^2.0.8",
+    "ngx-order-pipe": "^2.0.2",
     "rxjs": "^6.2.2",
     "rxjs-compat": "^6.2.2",
     "sw-toolbox": "3.6.0",

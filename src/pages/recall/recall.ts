@@ -30,6 +30,8 @@ export class RecallPage {
 
   months = ["","Jan","Feb","March","April","May","June","July","Aug","Sept","Oct","Nov","Dec"]
   
+  order: string = "date"
+
   constructor(public navCtrl: NavController, private http: Http,public navParams: NavParams,
               public db: AngularFireDatabase,public storage: Storage) 
   {
@@ -45,7 +47,7 @@ export class RecallPage {
         })
     })
 
-    const recalls = db.list("/recalls").valueChanges()
+    const recalls = db.list("/recalls",ref=>ref.orderByChild("medicine")).valueChanges()
     recalls.subscribe( rec => {
       //console.log("Recall",rec)
       let items = []
@@ -56,7 +58,8 @@ export class RecallPage {
           "name":recall["medicine"],
           "children":[{
               name: recall["manufacturer"],
-              information: recall["reason"],
+              description: recall["description"],
+              reason: recall["reason"],
               rday: recall["date"]["day"],
               rmonth: recall["date"]["month"],
               ryear: recall["date"]["year"],
@@ -65,9 +68,9 @@ export class RecallPage {
         }
         //console.log("this-array",items)
         items.push(recallF1)
-        //console.log("recallF1",recallF1)
+        console.log("recallF1",recallF1)
       }
-      //console.log("app.items",{"items":items})
+      console.log("app.items",{"items":items})
       this.information = items
     })
 

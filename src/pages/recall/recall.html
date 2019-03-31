@@ -49,6 +49,13 @@
         
                 <!-- Direct Add Button as Fallback -->
                 <ion-item *ngIf="!child.children" ion-item detail-none class="child-item" text-wrap>
+
+                <span><b>Medication:</b></span><h3>{{item.name}}</h3>
+                <br/>
+
+                <span><b>Description:</b></span>
+                <p text-lowercase>{{ child.description }}</p>
+
                 <span><b>Manufacturer:</b></span><h2 text-lowercase>{{ child.name }}</h2>
                 <br/>
 

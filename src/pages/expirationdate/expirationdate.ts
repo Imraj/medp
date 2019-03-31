@@ -62,7 +62,7 @@ export class ExpirationdatePage {
   }
   
   public brands: string[] = [];
-  public types: string[] = [];
+  public types: any[] = [];
 
   public inputBrand: string = '';
   public inputType: string = '';
@@ -76,6 +76,8 @@ export class ExpirationdatePage {
 
   expBtnCssClass : string;
   expResCssClass : string;
+
+  order: string = "name"
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
               public toastCtrl: ToastController,private db: AngularFireDatabase,public storage: Storage,
@@ -84,15 +86,15 @@ export class ExpirationdatePage {
 
       
 
-      this.medTypes = db.list("medtype").valueChanges()
+      this.medTypes = db.list("medtype",ref => ref.orderByChild('medname')).valueChanges()
+      //db.list('/items', ref => ref.orderByChild('size').equalTo('large'))
 
-
-      db.list("medtype").valueChanges()
+      db.list("medtype",ref => ref.orderByChild('medname')).valueChanges()
         .subscribe((snapshot)=>{
           snapshot.forEach(element => {
             const mObject = <any>element
             this.types.push(
-              mObject.medname
+              {"name": mObject.medname}
             )
           })
           

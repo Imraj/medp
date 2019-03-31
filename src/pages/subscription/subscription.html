@@ -38,6 +38,9 @@
     </div>
 
     <ion-list no-lines *ngIf="!subscribed">
+        <ion-item text-center>
+            Subscription is $9.99/year
+        </ion-item>
         <ion-item>
             <ion-input [(ngModel)]="subscribe.cardno" placeholder="Card Number"></ion-input>
         </ion-item>

@@ -2,6 +2,7 @@ page-home {
     ion-content{
         background-color:#f6f5f3
     }
+
     #titleText{
         color:#a38f73;
     }
@@ -20,46 +21,8 @@ page-home {
         ##Screen = B/w 1025px to 1280px
     */
     @media (min-width: 1025px) and (max-width: 1281px) {
-
-       
-
-        #home-icon-1{
-            width:12%;
-            height: 12%;
-            float:left;
-            margin-top:10%;
-            margin-left: 27.5%;
-        }
-
-        #home-icon-2{
-            width:15%;
-            height: 15%;
-            float:left;
-            margin-top:20%;
-            margin-left:27.5%;
-        }
-
-        #home-icon-3{
-            width:15%;
-            height: 15%;
-            float:left;
-            margin-top:20%;
-            margin-left:27.5%;
-        }
-
-        .home-text-1{
-            float:left;
-            margin-top: 12.5%;
-        }
-
-        .home-text-2{
-            float:left;
-            margin-top:12.5%;
-        }
-
-        .home-text-3{
-            float:left;
-            margin-top:12.5%;
+        .home-text{
+            font-size: 26px;
         }
     }
   
@@ -68,120 +31,16 @@ page-home {
         ##Screen = B/w 834px to 1024px
     */
     @media (min-width: 834px) and (max-width: 1024px) {
-
-        ion-grid{
-            height: 100%;
+        .home-text{
+            font-size: 24px;
         }
-
-        ion-row{
-            height: 100%;
-        }
-
-        ion-card{
-            height: 100%;
-        }
-
-        #home-icon-3{
-            width:20%;
-            height: 20%;
-            float:left;
-            margin-top:20%;
-            margin-left:20%;
-        }
-
-
-        #home-icon-2{
-            width:20%;
-            height: 20%;
-            float:left;
-            margin-top:20%;
-            margin-left:20%;
-        }
-
-        #home-icon-1{
-            width:20%;
-            height: 20%;
-            float:left;
-            margin-top:20%;
-            margin-left:20%;
-        }
-
-        .home-text-1{
-            float:left;
-            margin-top:27.5%;
-            margin-left: 20px;
-        }
-
-        .home-text-2{
-            float:left;
-            margin-top:22.5%;
-        }
-
-        .home-text-3{
-            float:left;
-            margin-top:22.5%;
-            margin-left: 12.5px;
-        }
-
     }
 
 
     @media (min-width: 768px) and (max-width: 834px) {
-
-        ion-grid{
-            height: 100%;
+        .home-text{
+            font-size: 20px;
         }
-
-        ion-row{
-            height: 100%;
-        }
-
-        ion-card{
-            height: 100%;
-        }
-
-        #home-icon-3{
-            width:20%;
-            height: 20%;
-            float:left;
-            margin-top:20%;
-            margin-left:10%;
-        }
-
-
-        #home-icon-2{
-            width:20%;
-            height: 20%;
-            float:left;
-            margin-top:20%;
-            margin-left:10%;
-        }
-
-        #home-icon-1{
-            width:20%;
-            height: 20%;
-            float:left;
-            margin-top:20%;
-            margin-left:10%;
-        }
-
-        .home-text-1{
-            float:left;
-            margin-top:27.5%;
-            margin-left: 20px;
-        }
-
-        .home-text-2{
-            float:left;
-            margin-top:22.5%;
-        }
-
-        .home-text-3{
-            float:left;
-            margin-top:22.5%;
-            margin-left: 12.5px;
-        }
-
     }
 
 
@@ -191,201 +50,27 @@ page-home {
         ##Screen = B/w 768px to 1024px
     */
     @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-        #home-icon-1,#home-icon-2,#home-icon-3{
-            width:20%;
-            height: 20%;
-            float:left;
-            margin-top:2em;
-            margin-left:10em;
-        }
-
-        .home-text-1,.home-text-2,.home-text-3{
-            float:left;
-        }
-    
-        .home-text-1{
-            margin-top:2.5em;
-            margin-left: 20px;
-        }
-    
-        .home-text-2{
-            margin-top:2.8em;
-        }
-
-        .home-text-3{
-            margin-top:2.8em;
-            margin-left: 10px;
+        .home-text{
+            font-size: 20px;
         }
     }
   
-    /* 
-        ##Device = Low Resolution Tablets, Mobiles (Landscape)
-        ##Screen = B/w 481px to 767px
-    */
     @media (min-width: 481px) and (max-width: 767px) {
-        #home-icon-3{
-            width:15%;
-            height: 15%;
-            float:left;
-            margin-top:10%;
-            margin-left:20%;
+        .home-text{
+            font-size: 18px;
         }
-
-
-        #home-icon-2{
-            width:15%;
-            height: 15%;
-            float:left;
-            margin-top:10%;
-            margin-left:20%;
-        }
-
-        #home-icon-1{
-            width:12%;
-            height: 12%;
-            float:left;
-            margin-top:10%;
-            margin-left: 20%;
-        }
-
-        .home-text-1{
-            float:left;
-            margin-left: 5%;
-            margin-top: 12.5%;
-        }
-
-        .home-text-2{
-            float:left;
-            margin-left: 5%;
-            margin-top: 12.5%;
-        }
-
-        .home-text-3{
-            float:left;
-            margin-left: 5%;
-            margin-top: 12.5%;
-        }
-
-        ion-grid{
-            height: 100%;
-        }
-
-        ion-card{
-            height: 100%;
-        }
-
     }
   
-    /* 
-        ##Device = Most of the Smartphones Mobiles (Portrait)
-        ##Screen = B/w 326px to 479px
-    */
     @media (min-width: 326px) and (max-width: 480px) {
-        ion-grid{
-            height: 100%;
+        .home-text{
+            font-size: 16px;
         }
-
-        ion-row{
-            height: 100%;
-        }
-
-        ion-card{
-            height: 100%;
-        }
-
-        #home-icon-3{
-            width:15%;
-            height: 15%;
-            float:left;
-            margin-top:20%;
-            margin-left:10%;
-        }
-
-
-        #home-icon-2{
-            width:15%;
-            height: 15%;
-            float:left;
-            margin-top:20%;
-            margin-left:10%;
-        }
-
-        #home-icon-1{
-            width:12%;
-            height: 12%;
-            float:left;
-            margin-top:20%;
-            margin-left: 10%;
-        }
-
-        .home-text-1{
-            float:left;
-            margin-left: 5px;
-            margin-top: 22.5%;
-        }
-
-        .home-text-2{
-            float:left;
-            margin-top:22.5%;
-        }
-
-        .home-text-3{
-            float:left;
-            margin-top:22.5%;
-        }
-       
     }
 
     @media (min-width: 315px) and (max-width: 325px) {
-        ion-grid{
-            height: 100%;
+        .home-text{
+            font-size: 12px;
         }
-        
-        ion-card{
-            height: 100%;
-        }
-
-        #home-icon-3{
-            width:15%;
-            height: 15%;
-            float:left;
-            margin-top:10%;
-            margin-left:5%;
-        }
-
-
-        #home-icon-2{
-            width:15%;
-            height: 15%;
-            float:left;
-            margin-top:10%;
-            margin-left:5%;
-        }
-
-        #home-icon-1{
-            width:12%;
-            height: 12%;
-            float:left;
-            margin-top:10%;
-            
-        }
-
-        .home-text-1{
-            float:left;
-            margin-left: 5px;
-            margin-top: 12.5%;
-        }
-
-        .home-text-2{
-            float:left;
-            margin-top:12.5%;
-        }
-
-        .home-text-3{
-            float:left;
-            margin-top:12.5%;
-        }
-       
     }
     
 
@@ -531,7 +216,7 @@ page-home {
 //     #home-icon-1,#home-icon-2,#home-icon-3{
 //         width:10%;
 //         height: 10%;
-//         float:left;
+//         ;
 //     }
 
 //     ion-grid{
@@ -564,7 +249,7 @@ page-home {
 //     #home-icon-2,#home-icon-3{
 //         width:15%;
 //         height: 15%;
-//         float:left;
+//         ;
 //         margin-top:3em;
 //         margin-left:2em;
 //     }
@@ -572,13 +257,13 @@ page-home {
 //     #home-icon-1{
 //         width:15%;
 //         height: 15%;
-//         float:left;
+//         ;
 //         margin-top:3em;
 //         margin-left:1em;
 //     }
 
 //     .home-text-1,.home-text-2,.home-text-3{
-//         float:left;
+//         ;
 //     }
 
 //     .home-text-1{
@@ -596,7 +281,7 @@ page-home {
 //     #home-icon-1,#home-icon-2,#home-icon-3{
 //         width:10%;
 //         height: 10%;
-//         float:left;
+//         ;
 //         margin-left:2em;
 //     }
 
@@ -621,13 +306,13 @@ page-home {
 //     #home-icon-1,#home-icon-2,#home-icon-3{
 //         width:20%;
 //         height: 20%;
-//         float:left;
+//         ;
 //         margin-top:5em;
 //         margin-left:4em;
 //     }
 
 //     .home-text-1,.home-text-2,.home-text-3{
-//         float:left;
+//         ;
 //     }
 
 //     .home-text-1{
@@ -649,13 +334,13 @@ page-home {
 //     #home-icon-1,#home-icon-2,#home-icon-3{
 //         width:20%;
 //         height: 20%;
-//         float:left;
+//         ;
 //         margin-top:2em;
 //         margin-left:10em;
 //     }
 
 //     .home-text-1,.home-text-2,.home-text-3{
-//         float:left;
+//         ;
 //     }
 
 //     .home-text-1{

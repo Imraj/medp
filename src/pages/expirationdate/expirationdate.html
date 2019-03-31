@@ -35,8 +35,8 @@
         <ion-item>
             <ion-label floating>Type of Medication</ion-label>
             <ion-select [(ngModel)]="expdate.medtype" (ionChange)="onChange($event)">
-                <ion-option *ngFor="let type of types" [value]="type" >
-                    {{type}}
+                <ion-option *ngFor="let type of types | orderBy: order" [value]="type.name" >
+                    {{type.name}}
                 </ion-option>
             </ion-select>
         </ion-item>

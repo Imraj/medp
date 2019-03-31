@@ -55,6 +55,8 @@ import { ChangeCardPage } from '../pages/change-card/change-card';
 
 import { AnimationService, AnimatesDirective } from 'css-animator';
 
+import { OrderModule } from 'ngx-order-pipe';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -89,7 +91,8 @@ import { AnimationService, AnimatesDirective } from 'css-animator';
     IonicSelectableModule,
     TooltipsModule,
     FormsModule,
-    Ng2CompleterModule
+    Ng2CompleterModule,
+    OrderModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

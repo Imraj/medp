@@ -23,103 +23,60 @@
 
 <ion-content>
 
-    
-      <ion-grid>
-        <ion-row id="home-row1">
-          <ion-col col-12 col-md-12 col-sm-12 >
-            <ion-card (click)="navToExpirationdate()">
-                <ion-card-content text-center>
-                    <img id="home-icon-1" src="assets/icons/h-calendar.png"  />
-                    <span id="size-2" class="home-text-1">
-                        Expiration Date Calculator
-                        <br/>
-                    </span>
-                </ion-card-content>
-            </ion-card>
-          </ion-col>
+      <ion-grid style="height:100%;">
+
+        <ion-row (click)="navToExpirationdate()">
+            <ion-col size="1"></ion-col>
+            <ion-col  text-center>
+                <img src="assets/icons/h-calendar.png"   />
+                
+            </ion-col>
+            <ion-col size="1"></ion-col>
+        </ion-row>
+        <ion-row (click)="navToExpirationdate()">
+            <ion-col text-center>
+                <div class="home-text">Expiration Date Calculator</div>
+                <hr/>
+            </ion-col>
+            
         </ion-row>
 
-        <ion-row id="home-row2">
-          <ion-col col-12 col-md-12 col-sm-12 >
-            <ion-card>
-                <ion-card-content text-center>
-                    <img src="assets/icons/h-tan.png" id="home-icon-2" (click)="navToInsulin()"  />
-                    <span id="size-2" class="home-text-2">
-                        <span (click)="navToInsulin()">Insulin Expiration Guide</span><br/>
-                        <span id="size-3" (click)="navToSub()"><i>Via Annual Subscription</i></span>
-                    </span>
-                </ion-card-content>
-            </ion-card>
-          </ion-col>
+        
+
+        <ion-row (click)="navToInsulin()">
+            <ion-col size="1"></ion-col>
+            <ion-col size="10"  text-center>
+                <img src="assets/icons/h-tan.png" />
+            </ion-col>
+            <ion-col size="1"></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12" text-center>
+                <div (click)="navToInsulin()" class="home-text">Insulin Expiration Guide</div>
+                <span id="size-3" (click)="navToSub()"><i>Via Annual Subscription</i></span>
+                <hr/>
+            </ion-col>
         </ion-row>
 
 
-        <ion-row id="home-row3">
-          <ion-col col-12 col-md-12 col-sm-12>
-            <ion-card>
-                <ion-card-content text-center>
-                    <img (click)="navToRecall()" id="home-icon-3" src="assets/icons/h-warning.png"/>
-                    <span id="size-2" class="home-text-3" >
-                        <span (click)="navToRecall()">Medication Recalls</span><br/>
-                        <span id="size-3" (click)="navToSub()"><i>Via Annual Subscription</i></span>
-                    </span>
-                </ion-card-content>
-            </ion-card>
-          </ion-col>
+     
+        <ion-row (click)="navToRecall()">
+            <ion-col size="1"></ion-col>
+            <ion-col size="10" text-center>
+                <img src="assets/icons/h-warning.png" />
+            </ion-col>
+            <ion-col size="1"></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="12" text-center>
+                <div (click)="navToRecall()" id="txt" class="home-text">Medication Recalls</div>
+                <span id="size-3" (click)="navToSub()"><i>Via Annual Subscription</i></span>
+                
+            </ion-col>
         </ion-row>
       </ion-grid>
 
-        <!-- <ion-row>
-            <ion-col col-3></ion-col>
-            <ion-col col-12 col-md-6 col-sm-12>
-                <ion-card (click)="navToRecall()">
-                    <ion-card-content text-center>
-                        <img (click)="navToRecall()" src="assets/icons/h-warning.png" style="width:15%;height: 15%;" width="40" height="40"/>
-                        <span id="size-2">
-                            Medication Recalls<br/>
-                            <span id="size-3" (click)="navToSub()"><i>Via Annual Subscription</i></span>
-                        </span>
-                    </ion-card-content>
-                </ion-card>
-            </ion-col>
-        </ion-row> -->
-
-
-        <!-- <div  style="height: 33%" >
-            <img (click)="navToExpirationdate()" style="float:left" src="assets/icons/h-calendar.png" width="35" height="35" />
-            <span (click)="navToExpirationdate()" style="margin-left: 20px;" id="size-2">
-                Expiration Date Calculator
-            </span>
-            <span class="tooltip-toggle-2" data-tooltip="Calculates the expiration date of the medication">
-                <img src="assets/icons/help.png" width="10" height="10"/>
-            </span>
-        </div>
-
-         
        
-        <div style="height: 33%">
-            <img  (click)="navToInsulin()" src="assets/icons/h-tan.png" style="float:left" width="50" height="50" />
-            <span (click)="navToInsulin()" id="size-2">
-                Insulin Expiration Guide
-                <span class="tooltip-toggle" data-tooltip="Guide on insulins including their form, storage information, and expiration date">
-                    <img src="assets/icons/help.png" width="10" height="10"/>
-                </span>
-                <br/>
-                <span id="size-3" (click)="navToSub()"><i>Via Annual Subscription</i></span>
-            </span>  
-        </div> -->
-   
-        <!-- <div style="height: 33%">
-            <img (click)="navToRecall()" src="assets/icons/h-warning.png" style="float:left" width="40" height="40"/>
-            <span (click)="navToRecall()" id="size-2">
-                Medication Recalls
-                <span class="tooltip-toggle" data-tooltip=" Information regarding specific recalls-Including manufacturer, lot numbers and reason for recall">
-                    <img src="assets/icons/help.png" width="10" height="10"/>
-                </span>
-                <br/>
-                <span id="size-3" (click)="navToSub()"><i>Via Annual Subscription</i></span>
-            </span>
-        </div> -->
 
 </ion-content>
 
