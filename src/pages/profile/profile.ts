@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController,LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,ToastController,LoadingController, Platform } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
@@ -10,6 +10,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from "@ionic/storage"
+import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
 
 
 /**
@@ -72,7 +73,8 @@ export class ProfilePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public afAuth: AngularFireAuth, public db: AngularFireDatabase,
               public storage: Storage,public toastCtrl: ToastController,
-              public loadingCtrl: LoadingController,) 
+              public loadingCtrl: LoadingController,public splitPane: SplitPaneProvider,
+              public platform: Platform) 
   { 
     this.newsletter = false
     this.storage.get("currentEmail").then((val)=>{
@@ -132,6 +134,12 @@ export class ProfilePage {
         this.profile.country = val
     })
 
+  }
+
+  ionViewWillEnter() {  
+    if(this.platform.width() > 700){
+      this.splitPane.splitPaneState = true;
+    }   
   }
 
   updateProfile()

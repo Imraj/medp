@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http'
 import { HttpParams } from "@angular/common/http"
+import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
 
 /**
  * Generated class for the RegisterPage page.
@@ -35,7 +36,7 @@ export class RegisterPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
               public afAuth: AngularFireAuth,public db: AngularFireDatabase,public alertCtrl: AlertController,
-              public http: HttpClient) {
+              public http: HttpClient, public splitPane: SplitPaneProvider) {
   
       this.profiles = db.list("/profiles").valueChanges()
   }
@@ -43,6 +44,10 @@ export class RegisterPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
   }
+
+  ionViewWillEnter() {    
+    this.splitPane.splitPaneState = false; 
+  } 
 
   createAccount(){
     var app = this

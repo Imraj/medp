@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController,LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController,LoadingController, Platform } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
@@ -9,6 +9,8 @@ import { EmailComposer } from '@ionic-native/email-composer';
 import { Storage } from "@ionic/storage"
 import { HttpClient } from '@angular/common/http'
 import { HttpParams } from "@angular/common/http"
+
+import { SplitPaneProvider } from "../../providers/split-pane/split-pane";
 
 /**
  * Generated class for the ContactPage page.
@@ -34,11 +36,18 @@ export class ContactPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
       private toastCtrl: ToastController, public loadingCtrl: LoadingController,
-      private emailComposer: EmailComposer, private http: HttpClient,private storage: Storage,) {
+      private emailComposer: EmailComposer, private http: HttpClient,private storage: Storage,
+      public splitPane: SplitPaneProvider, public platform: Platform) {
   }
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad ContactPage');
+  }
+
+  ionViewWillEnter() {  
+    if(this.platform.width() > 700){
+      this.splitPane.splitPaneState = true;
+    }   
   }
 
   navToExpirationdate(){

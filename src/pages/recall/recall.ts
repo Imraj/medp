@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
 
@@ -11,6 +11,7 @@ import 'rxjs/add/operator/map'
 
 import { Storage } from "@ionic/storage"
 import { SubscriptionPage } from '../subscription/subscription';
+import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
 
 /**
  * Generated class for the RecallPage page.
@@ -33,7 +34,8 @@ export class RecallPage {
   order: string = "date"
 
   constructor(public navCtrl: NavController, private http: Http,public navParams: NavParams,
-              public db: AngularFireDatabase,public storage: Storage) 
+              public db: AngularFireDatabase,public storage: Storage,
+              public splitPane: SplitPaneProvider, public platform: Platform) 
   {
 
     var app = this
@@ -87,6 +89,12 @@ export class RecallPage {
   ionViewDidLoad() {
     //console.log('ionViewDidLoad RecallPage');
   }
+
+  ionViewWillEnter() {  
+    if(this.platform.width() > 700){
+      this.splitPane.splitPaneState = true;
+    }   
+  } 
 
   navToExpirationdate(){
     this.navCtrl.push(ExpirationdatePage)

@@ -1,4 +1,4 @@
-<ion-split-pane when="md">
+<ion-split-pane when="lg" [when]="splitPane.splitPaneState">
   <ion-menu [content]="content">
     <ion-content id="menu">
       <div>
@@ -19,7 +19,7 @@
             <span id="menuTxt">About</span>
         </button>
         <button id="menuBtn" menuClose ion-item (click)="navToShare()">
-          <img src="assets/icons/share.png" width="20" height="20" />
+          <img src="assets/icons/shr.png" width="20" height="20" />
           <span id="menuTxt">Share</span>
         </button>
         <button id="menuBtn" menuClose ion-item (click)="navToFaqs()">

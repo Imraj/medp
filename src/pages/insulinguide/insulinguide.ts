@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,LoadingController, AlertController, Platform } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 
@@ -15,7 +15,6 @@ import { CompleterService, CompleterData } from 'ng2-completer';
 import { Keyboard } from 'ionic-angular';
 
 
-
 /**
  * Generated class for the InsulinguidePage page
  * See https://ionicframework.com/docs/components/#navigation for more info on
@@ -23,6 +22,7 @@ import { Keyboard } from 'ionic-angular';
  */
 
 import { IonicSelectableComponent } from 'ionic-selectable';
+import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
 
 class Brand {
   public name: string;
@@ -64,7 +64,9 @@ export class InsulinguidePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
               public db: AngularFireDatabase,public storage: Storage, public alertCtrl: AlertController,
-              private completerService: CompleterService,private keyboard: Keyboard) 
+              private completerService: CompleterService,private keyboard: Keyboard,
+              public splitPane: SplitPaneProvider, public platform: Platform
+              ) 
   {
     var app = this
 
@@ -90,6 +92,12 @@ export class InsulinguidePage {
   ionViewDidLoad() {
     //console.log('ionViewDidLoad InsulinguidePage');
   }
+
+  ionViewWillEnter() {  
+    if(this.platform.width() > 700){
+      this.splitPane.splitPaneState = true;
+    }   
+  } 
 
   navToExpirationdate(){
     this.navCtrl.push(ExpirationdatePage)

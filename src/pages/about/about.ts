@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
 import { SubscriptionPage } from "../subscription/subscription"
 
+import { SplitPaneProvider } from "../../providers/split-pane/split-pane";
 /**
  * Generated class for the AboutPage page.
  *
@@ -19,11 +20,18 @@ import { SubscriptionPage } from "../subscription/subscription"
 })
 export class AboutPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public splitPane: SplitPaneProvider, public platform: Platform) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AboutPage');
+  }
+
+  ionViewWillEnter() {  
+    if(this.platform.width() > 700){
+      this.splitPane.splitPaneState = true;
+    }   
   }
 
   navToExpirationdate(){

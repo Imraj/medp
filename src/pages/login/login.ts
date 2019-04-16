@@ -8,6 +8,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from "@ionic/storage"
+import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
 
 /**
  * Generated class for the LoginPage page.
@@ -36,7 +37,8 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public loadingCtrl: LoadingController,
               public afAuth:AngularFireAuth, public alertCtrl: AlertController,public toastCtrl: ToastController,
-              private storage: Storage,private db: AngularFireDatabase) 
+              private storage: Storage,private db: AngularFireDatabase,
+              public splitPane: SplitPaneProvider) 
   {
     
     
@@ -46,6 +48,10 @@ export class LoginPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+
+  ionViewWillEnter() {    
+    this.splitPane.splitPaneState = false; 
+  } 
 
   showPassword() {
     this.showPass = !this.showPass;

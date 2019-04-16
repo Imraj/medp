@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController,LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController,LoadingController, AlertController, Platform } from 'ionic-angular';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from "@ionic/storage"
 
 import { Stripe } from "@ionic-native/stripe"
+
+import { SplitPaneProvider } from "../../providers/split-pane/split-pane";
+
+
 /**
  * Generated class for the ChangeCardPage page.
  *
@@ -30,13 +34,20 @@ export class ChangeCardPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
     public viewCtrl: ViewController, public db: AngularFireDatabase,private storage: Storage,
-    public alertCtrl: AlertController,private stripe: Stripe) 
+    public alertCtrl: AlertController,private stripe: Stripe, public splitPane: SplitPaneProvider,
+    public platform: Platform) 
   {
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChangeCardPage');
+  }
+
+  ionViewWillEnter() {  
+    if(this.platform.width() > 700){
+      this.splitPane.splitPaneState = true;
+    }   
   }
 
   closeModal(){

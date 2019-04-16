@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController, Platform } from 'ionic-angular';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
 import { ContactPage } from "../contact/contact"
@@ -20,6 +20,7 @@ import { IonicSelectableComponent } from 'ionic-selectable';
 import { CompleterService, CompleterData } from 'ng2-completer';
 
 import { Keyboard } from 'ionic-angular';
+import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
 
 /**
  * Generated class for the ExpirationdatePage page.
@@ -81,11 +82,9 @@ export class ExpirationdatePage {
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController,
               public toastCtrl: ToastController,private db: AngularFireDatabase,public storage: Storage,
-              public alertCtrl: AlertController,private keyboard: Keyboard) 
+              public alertCtrl: AlertController,private keyboard: Keyboard, public splitPane: SplitPaneProvider,
+              public platform: Platform) 
   {
-
-      
-
       this.medTypes = db.list("medtype",ref => ref.orderByChild('medname')).valueChanges()
       //db.list('/items', ref => ref.orderByChild('size').equalTo('large'))
 
@@ -99,13 +98,17 @@ export class ExpirationdatePage {
           })
           
         })
-
-
       this.medications = db.list("medications").valueChanges()
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExpirationdatePage');
+  }
+
+  ionViewWillEnter() {  
+    if(this.platform.width() > 700){
+      this.splitPane.splitPaneState = true;
+    }   
   }
 
   navToExpirationdate(){

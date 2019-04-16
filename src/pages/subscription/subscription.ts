@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController, LoadingController, ToastController } from 'ionic-angular';
+import { Platform, IonicPage, NavController, NavParams, ModalController, AlertController, LoadingController, ToastController } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map'
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from "@ionic/storage"
 
+import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
 
 @IonicPage()
 @Component({
@@ -38,7 +39,8 @@ export class SubscriptionPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,private stripe: Stripe,
               public alertCtrl: AlertController, public loadingCtrl: LoadingController,
               public http: HttpClient, public db: AngularFireDatabase,private storage: Storage,
-              public toastCtrl : ToastController,public modalCtrl: ModalController) {
+              public toastCtrl : ToastController,public modalCtrl: ModalController,
+              public splitPane: SplitPaneProvider, public platform: Platform) {
                 var app = this
                 this.storage.get("currentEmail").then((val)=>{
                   this.email = val
@@ -56,7 +58,6 @@ export class SubscriptionPage {
                       this.card_exp_month = y["card_exp_month"]
                       this.card_exp_year = y["card_exp_year"]
 
-                      //console.log("y",y["subscribed"])
                     })
                   });
 
@@ -66,6 +67,12 @@ export class SubscriptionPage {
   ionViewDidLoad() {
     //console.log('ionViewDidLoad SubscriptionPage');
   }
+
+  ionViewWillEnter() {  
+    if(this.platform.width() > 700){
+      this.splitPane.splitPaneState = true;
+    }   
+  } 
 
   navToExpirationdate(){
     this.navCtrl.push(ExpirationdatePage)
@@ -153,6 +160,7 @@ export class SubscriptionPage {
                     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
                     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
                     var dateTime = date+' '+time;
+
                     this.db.list("profiles").update(snapshot.key,{
                         subscribed: true,
                         card_last4: token.card.last4,

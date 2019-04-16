@@ -56,6 +56,8 @@ import { ChangeCardPage } from '../pages/change-card/change-card';
 import { AnimationService, AnimatesDirective } from 'css-animator';
 
 import { OrderModule } from 'ngx-order-pipe';
+import { SplitPaneProvider } from '../providers/split-pane/split-pane';
+
 
 @NgModule({
   declarations: [
@@ -124,7 +126,8 @@ import { OrderModule } from 'ngx-order-pipe';
     InAppBrowser,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AnimationService
+    AnimationService,
+    SplitPaneProvider
   ]
 })
 export class AppModule {}

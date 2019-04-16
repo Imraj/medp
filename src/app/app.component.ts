@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, SplitPane } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -13,11 +13,13 @@ import { SharePage } from "../pages/share/share";
 import { SubscriptionPage } from "../pages/subscription/subscription";
 import { TermsofservicePage } from "../pages/termsofservice/termsofservice";
 import { LoginPage } from '../pages/login/login';
+import { SplitPaneProvider } from "../providers/split-pane/split-pane";
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Storage } from "@ionic/storage"
+import { Storage } from "@ionic/storage";
+
 
 
 
@@ -34,9 +36,9 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
-              public storage: Storage) {
+              public storage: Storage, public splitPane:SplitPaneProvider) {
     this.initializeApp();
-
+    
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'App Home', component: HomePage },
@@ -127,7 +129,11 @@ export class MyApp {
   logout(){
 
     this.storage.clear()
-    this.nav.setRoot(LoginPage)
+    this.nav.setRoot(LoginPage).then( ()=>{
+      this.nav.popToRoot().then( ()=> {}).catch(err=>{});
+    }).catch(err=>{
+
+  });
     
   }
 

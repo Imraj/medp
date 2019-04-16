@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
+
 /**
  * Generated class for the FaqsPage page.
  *
@@ -21,7 +23,8 @@ export class FaqsPage {
   information : any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-              public afDb:AngularFireDatabase) {
+              public afDb:AngularFireDatabase, public splitPane:SplitPaneProvider,
+              private platform: Platform) {
 
     const faqs = this.afDb.list("/faqs").valueChanges();
     faqs.subscribe( rec => {
@@ -46,6 +49,12 @@ export class FaqsPage {
   ionViewDidLoad() {
     
   }
+
+  ionViewWillEnter() {  
+    if(this.platform.width() > 700){
+      this.splitPane.splitPaneState = true;
+    }   
+  } 
 
   navToExpirationdate(){
     this.navCtrl.push(ExpirationdatePage)

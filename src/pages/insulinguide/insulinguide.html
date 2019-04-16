@@ -49,8 +49,8 @@
         </div> -->
 
         <div class="autocomplete">
-            <ion-item>
-              <ion-label floating>Brand or Generic Name?</ion-label>
+            <ion-label>Brand or Generic Name?</ion-label>
+            <ion-item>  
               <ion-input  type="text" 
                           [(ngModel)]="input"
                           (ionChange)="search()"
@@ -65,8 +65,8 @@
       </div>
 
         <br/><br/>
+        <ion-label>Date Opened?</ion-label>
         <ion-item id="insulin-page-date-opened" >
-            <ion-label id="date-opened">Date Opened?</ion-label>
             <ion-datetime [(ngModel)]="ins.date" displayFormat="MM/DD/YYYY"></ion-datetime> 
         </ion-item>
 

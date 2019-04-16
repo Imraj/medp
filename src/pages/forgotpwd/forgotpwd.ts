@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { Platform, IonicPage, NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from "@ionic/storage"
+import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
 
 /**
  * Generated class for the ForgotpwdPage page.
@@ -27,7 +28,8 @@ export class ForgotpwdPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public afAuth:AngularFireAuth,private storage: Storage,
     private db: AngularFireDatabase,public loadingCtrl: LoadingController,
-    private toastCtrl: ToastController) 
+    private toastCtrl: ToastController, public splitPane: SplitPaneProvider,
+    public platform: Platform) 
   {
 
   }
@@ -35,6 +37,10 @@ export class ForgotpwdPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ForgotpwdPage');
   }
+
+  ionViewWillEnter() {    
+    this.splitPane.splitPaneState = false; 
+  } 
 
   retrievePassword(){
     this.storage.clear()
