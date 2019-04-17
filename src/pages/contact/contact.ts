@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController,LoadingController, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, Navbar, NavController, NavParams, ToastController,LoadingController, Platform } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
 import { EmailComposer } from '@ionic-native/email-composer';
 
+import { HomePage } from "../home/home";
 //import { HTTP } from '@ionic-native/http';
 import { Storage } from "@ionic/storage"
 import { HttpClient } from '@angular/common/http'
@@ -26,6 +27,8 @@ import { SplitPaneProvider } from "../../providers/split-pane/split-pane";
 })
 export class ContactPage {
 
+  @ViewChild(Navbar) navBar: Navbar;
+
   contact = {
     type:"",
     subject:"",
@@ -41,7 +44,14 @@ export class ContactPage {
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad ContactPage');
+    this.navBar.backButtonClick = () => { 
+      let pages = [
+        {
+          page: HomePage
+        }
+      ];
+      this.navCtrl.setPages(pages);
+    }
   }
 
   ionViewWillEnter() {  

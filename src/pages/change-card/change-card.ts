@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController,LoadingController, AlertController, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Navbar, ViewController,LoadingController, AlertController, Platform } from 'ionic-angular';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from "@ionic/storage"
+
+import { HomePage } from "../home/home";
 
 import { Stripe } from "@ionic-native/stripe"
 
@@ -23,6 +25,8 @@ import { SplitPaneProvider } from "../../providers/split-pane/split-pane";
 })
 export class ChangeCardPage {
 
+  @ViewChild(Navbar) navBar: Navbar;
+  
   card = {
     cardno:"",
     cardcvv:"",
@@ -41,7 +45,14 @@ export class ChangeCardPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ChangeCardPage');
+    this.navBar.backButtonClick = () => { 
+        let pages = [
+        {
+          page: HomePage
+        }
+      ];
+      this.navCtrl.setPages(pages);
+    }
   }
 
   ionViewWillEnter() {  

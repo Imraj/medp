@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Platform, Navbar } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
+
+import { HomePage } from "../home/home";
 
 /**
  * Generated class for the FaqsPage page.
@@ -19,6 +21,8 @@ import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
   templateUrl: 'faqs.html',
 })
 export class FaqsPage {
+
+  @ViewChild(Navbar) navBar: Navbar;
 
   information : any[];
 
@@ -47,7 +51,14 @@ export class FaqsPage {
   }
 
   ionViewDidLoad() {
-    
+    this.navBar.backButtonClick = () => { 
+      let pages = [
+        {
+          page: HomePage
+        }
+      ];
+      this.navCtrl.setPages(pages);
+    }
   }
 
   ionViewWillEnter() {  

@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Platform, Navbar } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
 
-
+import { HomePage } from "../home/home";
 /**
  * Generated class for the PrivacypolicyPage page.
  *
@@ -21,12 +21,21 @@ import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
 })
 export class PrivacypolicyPage {
 
+  @ViewChild(Navbar) navBar: Navbar;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,private iab:InAppBrowser,
               public splitPane: SplitPaneProvider, public platform: Platform) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PrivacypolicyPage');
+    this.navBar.backButtonClick = () => { 
+      let pages = [
+        {
+          page: HomePage
+        }
+      ];
+      this.navCtrl.setPages(pages);
+    }
   }
 
   ionViewWillEnter() {  

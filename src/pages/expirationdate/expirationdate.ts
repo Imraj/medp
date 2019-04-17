@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, ToastController, AlertController, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, Navbar, NavController, NavParams, LoadingController, ToastController, AlertController, Platform } from 'ionic-angular';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
 import { ContactPage } from "../contact/contact"
+
+import { HomePage } from "../home/home";
 
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -43,6 +45,8 @@ class Type {
   templateUrl: 'expirationdate.html',
 })
 export class ExpirationdatePage {
+
+  @ViewChild(Navbar) navBar: Navbar;
 
   showRes = false
   notShowRes = false
@@ -102,7 +106,14 @@ export class ExpirationdatePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ExpirationdatePage');
+    this.navBar.backButtonClick = () => { 
+      let pages = [
+        {
+          page: HomePage
+        }
+      ];
+      this.navCtrl.setPages(pages);
+    }
   }
 
   ionViewWillEnter() {  

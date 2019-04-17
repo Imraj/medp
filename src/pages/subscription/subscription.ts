@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform, IonicPage, NavController, NavParams, ModalController, AlertController, LoadingController, ToastController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, Navbar, IonicPage, NavController, NavParams, ModalController, AlertController, LoadingController, ToastController } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
@@ -14,12 +14,15 @@ import { Storage } from "@ionic/storage"
 
 import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
 
+import { HomePage } from "../home/home";
 @IonicPage()
 @Component({
   selector: 'page-subscription',
   templateUrl: 'subscription.html',
 })
 export class SubscriptionPage {
+
+  @ViewChild(Navbar) navBar: Navbar;
 
   subscribe = {
     cardno : "",
@@ -65,7 +68,14 @@ export class SubscriptionPage {
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad SubscriptionPage');
+    this.navBar.backButtonClick = () => { 
+        let pages = [
+	      {
+			    page: HomePage
+		    }
+	    ];
+	    this.navCtrl.setPages(pages);
+	  }
   }
 
   ionViewWillEnter() {  

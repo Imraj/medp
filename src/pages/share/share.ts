@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController,LoadingController, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams,ToastController,LoadingController, Platform, Navbar } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
@@ -12,7 +12,7 @@ import { HttpClient } from "@angular/common/http";
 import { HttpParams } from "@angular/common/http"
 import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
 
-
+import { HomePage } from "../home/home";
 /**
  * Generated class for the SharePage page.
  *
@@ -34,6 +34,7 @@ export class SharePage {
     message: ""
   }
 
+  @ViewChild(Navbar) navBar: Navbar;
 
   email : string
   constructor(public navCtrl: NavController, public navParams: NavParams,private emailComposer: EmailComposer,
@@ -44,7 +45,14 @@ export class SharePage {
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad SharePage');
+    this.navBar.backButtonClick = () => { 
+        let pages = [
+	      {
+			    page: HomePage
+		    }
+	    ];
+	    this.navCtrl.setPages(pages);
+	  }
   }
 
   ionViewWillEnter() {  

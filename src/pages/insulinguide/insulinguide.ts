@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,LoadingController, AlertController, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams,LoadingController, AlertController, Platform, Navbar } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 
@@ -14,6 +14,7 @@ import { CompleterService, CompleterData } from 'ng2-completer';
 
 import { Keyboard } from 'ionic-angular';
 
+import { HomePage } from "../home/home";
 
 /**
  * Generated class for the InsulinguidePage page
@@ -38,6 +39,8 @@ class Generic {
   templateUrl: 'insulinguide.html',
 })
 export class InsulinguidePage {
+
+  @ViewChild(Navbar) navBar: Navbar;
 
   showRes = false
   notShowRes = false
@@ -90,7 +93,14 @@ export class InsulinguidePage {
   }
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad InsulinguidePage');
+    this.navBar.backButtonClick = () => { 
+      let pages = [
+        {
+          page: HomePage
+        }
+      ];
+      this.navCtrl.setPages(pages);
+    }
   }
 
   ionViewWillEnter() {  

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController,LoadingController, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams,ToastController,LoadingController, Platform, Navbar } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
@@ -12,7 +12,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Storage } from "@ionic/storage"
 import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
 
-
+import { HomePage } from "../home/home";
 /**
  * Generated class for the ProfilePage page.
  *
@@ -26,6 +26,8 @@ import { SplitPaneProvider } from '../../providers/split-pane/split-pane';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+
+  @ViewChild(Navbar) navBar: Navbar;
 
   countryList = [
     "Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas"
@@ -136,6 +138,17 @@ export class ProfilePage {
 
   }
 
+  ionViewDidLoad() {
+    this.navBar.backButtonClick = () => { 
+      let pages = [
+        {
+          page: HomePage
+        }
+      ];
+      this.navCtrl.setPages(pages);
+    }
+  }
+
   ionViewWillEnter() {  
     if(this.platform.width() > 700){
       this.splitPane.splitPaneState = true;
@@ -184,10 +197,6 @@ export class ProfilePage {
                           loading.dismiss();
 
                         });
-  }
-
-  ionViewDidLoad() {
-    //console.log('ionViewDidLoad ProfilePage');
   }
 
   navToExpirationdate(){

@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Platform,Navbar } from 'ionic-angular';
 import { ExpirationdatePage } from '../expirationdate/expirationdate';
 import { RecallPage } from '../recall/recall';
 import { InsulinguidePage } from '../insulinguide/insulinguide';
 import { SubscriptionPage } from "../subscription/subscription"
+import { HomePage } from "../home/home";
 
 import { SplitPaneProvider } from "../../providers/split-pane/split-pane";
 /**
@@ -20,12 +21,21 @@ import { SplitPaneProvider } from "../../providers/split-pane/split-pane";
 })
 export class AboutPage {
 
+  @ViewChild(Navbar) navBar: Navbar;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public splitPane: SplitPaneProvider, public platform: Platform) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AboutPage');
+    this.navBar.backButtonClick = () => { 
+      let pages = [
+        {
+          page: HomePage
+        }
+      ];
+      this.navCtrl.setPages(pages);
+    }
   }
 
   ionViewWillEnter() {  
