@@ -34,6 +34,8 @@ export class SharePage {
     message: ""
   }
 
+  fullname: string;
+
   @ViewChild(Navbar) navBar: Navbar;
 
   email : string
@@ -85,6 +87,12 @@ export class SharePage {
     });
     loader.present();
 
+    this.storage.get("fullname").then((val)=>{
+      console.log("val-fullname",val)
+      this.fullname = val
+    })
+    
+
     this.storage.get("currentEmail").then((val)=>{
         this.email = val
 
@@ -93,6 +101,8 @@ export class SharePage {
                             .set("message",message)
                             .set("email3",email3)
                             .set("from",this.email)
+                            .set("first_name",this.fullname.split(" ")[0])
+        console.log(this.fullname.split(" ")[0])
         //http://medexp.000webhostapp.com/share.php
         this.http.get("http://www.medexpiration.com/share.php",{params})
         .subscribe(
