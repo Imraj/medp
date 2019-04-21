@@ -87,44 +87,47 @@ export class SharePage {
     });
     loader.present();
 
-    this.storage.get("fullname").then((val)=>{
-      console.log("val-fullname",val)
-      this.fullname = val
-    })
+    
     
 
     this.storage.get("currentEmail").then((val)=>{
         this.email = val
 
-        const params = new HttpParams().set("email1",email1)
+        this.storage.get("fullname").then((val)=>{
+          console.log("val-fullname",val)
+          this.fullname = val
+
+          const params = new HttpParams().set("email1",email1)
                             .set("email2",email2)
                             .set("message",message)
                             .set("email3",email3)
                             .set("from",this.email)
                             .set("first_name",this.fullname.split(" ")[0])
-        console.log(this.fullname.split(" ")[0])
-        //http://medexp.000webhostapp.com/share.php
-        this.http.get("http://www.medexpiration.com/share.php",{params})
-        .subscribe(
-          data => {
-            loader.dismiss()
-            const toast = this.toastCtrl.create({
-              message:"Message Sent Successfully",
-              duration:5000
-            })
-            toast.present()
-
-          },
-          error => {
+          console.log(this.fullname.split(" ")[0])
+          //http://medexp.000webhostapp.com/share.php
+          this.http.get("http://www.medexpiration.com/share.php",{params})
+          .subscribe(
+            data => {
               loader.dismiss()
-              //console.log(error)
               const toast = this.toastCtrl.create({
-                message:"Error Sending Message",
+                message:"Message Sent Successfully",
                 duration:5000
               })
               toast.present()
-          }
-        )
+
+            },
+            error => {
+                loader.dismiss()
+                //console.log(error)
+                const toast = this.toastCtrl.create({
+                  message:"Error Sending Message",
+                  duration:5000
+                })
+                toast.present()
+            }
+          )
+
+        })
 
     })
 

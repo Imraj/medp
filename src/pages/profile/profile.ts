@@ -188,15 +188,18 @@ export class ProfilePage {
                             })
                           });
 
-                          const toast = this.toastCtrl.create({
-                            message:"Profile updated successfully",
-                            duration:5000
-                          })
-                          toast.present()
-
-                          loading.dismiss();
+                          //
 
                         });
+
+                        const toast = this.toastCtrl.create({
+                          message:"Profile updated successfully",
+                          duration:5000
+                        })
+                        toast.present()
+                        loading.dismiss();
+
+                        
   }
 
   navToExpirationdate(){

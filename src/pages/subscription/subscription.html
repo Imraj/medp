@@ -42,10 +42,12 @@
             Subscription is $9.99/year
         </ion-item>
         <ion-item>
-            <ion-input [(ngModel)]="subscribe.cardno" placeholder="Card Number"></ion-input>
+            <ion-label>Card Number</ion-label>
+            <ion-input [(ngModel)]="subscribe.cardno" type="text" placeholder="Card Number"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-input [(ngModel)]="subscribe.cardcvv" placeholder="Card CVV"></ion-input>
+            <ion-label>Card CVV</ion-label>
+            <ion-input [(ngModel)]="subscribe.cardcvv" type="text" placeholder="Card CVV"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label>Card Expiry Month</ion-label>

@@ -116,6 +116,11 @@ export class RegisterPage {
             const params = new HttpParams().set("email",email)
             this.http.get('https://www.medexpiration.com/welcome.php', {params})
             .subscribe(data => {},error=>{});
+
+            const newAcctParams = new HttpParams().set("email",email)
+                                                  .set("fullname",fullname)
+            this.http.get('http://www.medexpiration.com/new_account.php',{newAcctParams})
+            .subscribe(data=>{},error=>{})
           
         },
         function(error){
